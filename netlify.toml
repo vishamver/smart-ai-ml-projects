@@ -1,0 +1,212 @@
+[build]
+  publish = "."
+  command = "echo 'No build command needed'"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Main Pages - Remove .html extension
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 200
+
+[[redirects]]
+  from = "/services"
+  to = "/services.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact.html"
+  status = 200
+
+[[redirects]]
+  from = "/blogs"
+  to = "/blogs.html"
+  status = 200
+
+[[redirects]]
+  from = "/case-studies"
+  to = "/case-studies.html"
+  status = 200
+
+[[redirects]]
+  from = "/tools"
+  to = "/tools.html"
+  status = 200
+
+[[redirects]]
+  from = "/faq"
+  to = "/faq.html"
+  status = 200
+
+[[redirects]]
+  from = "/terms"
+  to = "/terms.html"
+  status = 200
+
+[[redirects]]
+  from = "/privacy"
+  to = "/privacypolicy.html"
+  status = 200
+
+# Article Pages - Remove .html extension
+[[redirects]]
+  from = "/first-neural-network-tensorflow"
+  to = "/first-neural-network-tensorflow.html"
+  status = 200
+
+[[redirects]]
+  from = "/future-ai-healthcare-diagnosis"
+  to = "/future-ai-healthcare-diagnosis.html"
+  status = 200
+
+[[redirects]]
+  from = "/ai-ethics-decision-making"
+  to = "/ai-ethics-decision-making.html"
+  status = 200
+
+[[redirects]]
+  from = "/ai-tools-developers"
+  to = "/ai-tools-developers.html"
+  status = 200
+
+[[redirects]]
+  from = "/ai-top10-tools-developers"
+  to = "/ai-top10-tools-developers.html"
+  status = 200
+
+[[redirects]]
+  from = "/computer-vision-opencv"
+  to = "/computer-vision-opencv.html"
+  status = 200
+
+[[redirects]]
+  from = "/ecommerce-recommendation-engine"
+  to = "/ecommercerecommendationengine.html"
+  status = 200
+
+[[redirects]]
+  from = "/financial-fraud-detection"
+  to = "/financialfrauddetection.html"
+  status = 200
+
+[[redirects]]
+  from = "/healthcare-ai-diagnostics"
+  to = "/healthcareaidiagnostics.html"
+  status = 200
+
+[[redirects]]
+  from = "/introduction-neural-networks"
+  to = "/introduction-neural-networks.html"
+  status = 200
+
+[[redirects]]
+  from = "/manufacturing-predictive-maintenance"
+  to = "/manufacturingpredictivemaintenance.html"
+  status = 200
+
+[[redirects]]
+  from = "/ml-financial-forecasting"
+  to = "/ml-financial-forecasting.html"
+  status = 200
+
+[[redirects]]
+  from = "/ml-healthcare-diagnostics"
+  to = "/ml-healthcare-diagnostics.html"
+  status = 200
+
+[[redirects]]
+  from = "/nlp-python-introduction"
+  to = "/nlp-python-introduction.html"
+  status = 200
+
+[[redirects]]
+  from = "/post"
+  to = "/post.html"
+  status = 200
+
+# Additional redirects for better URLs
+[[redirects]]
+  from = "/ai-bias-fairness"
+  to = "/ai-bias-fairness.html"
+  status = 200
+
+[[redirects]]
+  from = "/build-first-neural-network"
+  to = "/post.html"
+  status = 200
+
+# Redirect old .html URLs to clean URLs (SEO friendly)
+[[redirects]]
+  from = "/about.html"
+  to = "/about"
+  status = 301
+
+[[redirects]]
+  from = "/services.html"
+  to = "/services"
+  status = 301
+
+[[redirects]]
+  from = "/contact.html"
+  to = "/contact"
+  status = 301
+
+[[redirects]]
+  from = "/blogs.html"
+  to = "/blogs"
+  status = 301
+
+[[redirects]]
+  from = "/case-studies.html"
+  to = "/case-studies"
+  status = 301
+
+[[redirects]]
+  from = "/tools.html"
+  to = "/tools"
+  status = 301
+
+[[redirects]]
+  from = "/faq.html"
+  to = "/faq"
+  status = 301
+
+[[redirects]]
+  from = "/terms.html"
+  to = "/terms"
+  status = 301
+
+[[redirects]]
+  from = "/privacypolicy.html"
+  to = "/privacy"
+  status = 301
+
+# Sitemap configuration
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml"
+
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Content-Type = "text/plain"
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"

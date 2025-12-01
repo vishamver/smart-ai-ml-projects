@@ -1,0 +1,12 @@
+# AdSense Publisher ID
+google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+
+# Google Ad Manager
+google.com, pub-XXXXXXXXXXXXXXXX, RESELLER, f08c47fec0942fa0
+
+# Amazon Publisher Services
+amazon-adsystem.com, 1234, DIRECT
+amazon-adsystem.com, 5678, DIRECT
+
+# AppNexus
+appnexus.com, 1234, DIRECT

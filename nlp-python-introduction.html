@@ -1,0 +1,1024 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Introduction to Natural Language Processing with Python | Smart AI & ML Projects</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Favicon (Standard Browsers) -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo.png">
+
+<!-- Web App Manifest (PWA Support) -->
+<link rel="manifest" href="manifest.json">
+
+<!-- Safari Pinned Tab (macOS) -->
+<link rel="mask-icon" href="assets/images/logo.svg" color="#0a84ff">
+
+<!-- Microsoft Tile Color (Windows) -->
+<meta name="msapplication-TileColor" content="#0a84ff">
+  <style>
+    /* ========== Variables & base ========== */
+    :root{
+      --primary:#0066ff;
+      --nlp:#9c27b0;
+      --nlp-gradient:linear-gradient(135deg,#9c27b0,#7b1fa2);
+      --dark:#1a1a2e;
+      --darker:#16213e;
+      --gray:#6b7280;
+      --lighter:#ffffff;
+      --shadow-sm:0 4px 6px rgba(0,0,0,0.05);
+      --shadow-md:0 10px 15px -3px rgba(0,0,0,0.1);
+      --radius:12px;
+      --transition: all 0.28s ease;
+      --header-height:80px;
+      --max-width:1200px;
+    }
+
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%;margin:0;padding:0;overflow-x:hidden;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
+    body{color:var(--dark);background:var(--lighter);line-height:1.6}
+    h1,h2,h3,h4,h5{font-family:'Poppins',sans-serif;margin:0 0 0.6rem 0;font-weight:700}
+    a{color:inherit}
+    .container{max-width:var(--max-width);margin:0 auto;padding:0 20px;width:100%}
+
+    /* ========== Header / Nav ========== */
+    .header{
+      position:fixed;inset:0 0 auto 0;height:var(--header-height);
+      display:flex;align-items:center;backdrop-filter:blur(10px);
+      background:rgba(255,255,255,0.96);box-shadow:0 2px 20px rgba(0,0,0,0.08);z-index:1200;
+    }
+    .header .container{display:flex;align-items:center;justify-content:space-between}
+    .logo a{display:flex;align-items:center;text-decoration:none}
+    .logo img{width:50px;height:50px;border-radius:50%;object-fit:cover;border:3px solid var(--primary);box-shadow:0 4px 15px rgba(0,0,0,0.18);transition:var(--transition)}
+
+    /* Nav - desktop */
+    .nav{display:flex;gap:18px;align-items:center}
+    .nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0;align-items:center}
+    .nav a{display:inline-block;padding:8px 4px;text-decoration:none;color:var(--dark);font-weight:600;position:relative;white-space:nowrap}
+    .nav a:not(.btn)::after{content:'';position:absolute;left:0;bottom:-3px;height:2px;width:0;background:var(--primary);transition:var(--transition)}
+    .nav a:not(.btn):hover::after{width:100%}
+    .btn {display:inline-block;padding:10px 18px;border-radius:999px;font-weight:700}
+    .btn-primary{background:var(--nlp-gradient);color:white}
+    .btn-secondary{border:2px solid var(--nlp);color:var(--nlp);background:transparent}
+
+    /* Mobile toggle (hidden on desktop) */
+    .mobile-menu-toggle{display:none;border:0;background:transparent;padding:6px;cursor:pointer}
+    .mobile-menu-toggle span{display:block;height:3px;width:28px;background:var(--dark);border-radius:3px;margin:4px 0;transition:var(--transition)}
+    .mobile-menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+    .mobile-menu-toggle.active span:nth-child(2){opacity:0}
+    .mobile-menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+    /* ========== Content offset so header doesn't overlap ========== */
+    main, .nlp-hero, .prerequisites, .content-wrapper { padding-top: calc(var(--header-height) + 10px); }
+    .nlp-hero { padding-bottom: 60px; }
+
+    /* ========== Hero ========== */
+    .nlp-hero{background:linear-gradient(135deg,#f3e5f5 0%,#e1bee7 100%);position:relative}
+    .nlp-hero .container{padding-top:24px;padding-bottom:40px}
+    .nlp-badge{display:inline-block;background:var(--nlp-gradient);color:#fff;padding:6px 14px;border-radius:999px;font-weight:600;margin-bottom:12px}
+    .nlp-title{font-size:2.4rem;margin:10px 0;color:var(--darker);line-height:1.05}
+    .nlp-meta{display:flex;gap:18px;color:var(--gray);font-size:0.95rem;align-items:center}
+    .nlp-meta .meta-item{display:flex;align-items:center;gap:8px}
+
+    /* ========== Main layout ========== */
+    .content-wrapper{display:flex;gap:36px;align-items:flex-start;padding:30px 20px 80px}
+    .main-content{flex:1;max-width:820px}
+    .sidebar{width:320px;flex:0 0 320px}
+
+    /* TOC */
+    .toc{background:#fff;border-radius:12px;padding:22px;box-shadow:var(--shadow-md);position:sticky;top:calc(var(--header-height) + 12px)}
+    .toc-title{font-size:1.06rem;border-bottom:2px solid var(--nlp);padding-bottom:10px;margin-bottom:12px}
+    .toc-list{list-style:none;padding:0;margin:0}
+    .toc-item{padding-left:12px;margin-bottom:12px;position:relative}
+    .toc-item a{color:var(--dark);text-decoration:none}
+    .toc-item a.active{color:var(--nlp);font-weight:700}
+
+    /* Content sections */
+    .content-section{margin-bottom:40px}
+    .content-section h2{font-size:1.6rem;color:var(--darker);padding-bottom:6px;margin-bottom:12px;border-bottom:2px solid #eee}
+    .info-box{background:#f3e5f5;border-left:4px solid var(--nlp);padding:14px;border-radius:8px;color:var(--darker)}
+
+    /* Code blocks */
+    .code-block{background:linear-gradient(180deg,#111316,#0f1113);color:#e6eef8;border-radius:10px;padding:18px;position:relative;overflow:auto;border:1px solid rgba(255,255,255,0.03)}
+    .code-block pre{margin:0;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,"Roboto Mono",monospace;font-size:13px;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+    .code-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;color:rgba(255,255,255,0.75);font-weight:700}
+    .copy-btn{position:absolute;right:10px;top:10px;background:rgba(255,255,255,0.06);color:#fff;border:0;padding:8px 10px;border-radius:8px;cursor:pointer}
+
+    /* Libraries / cards */
+    .libraries-grid,.prereq-grid,.applications-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+    .library-card,.prereq-card,.application-card{background:#fff;border-radius:12px;padding:18px;box-shadow:var(--shadow-md);border:1px solid rgba(0,0,0,0.03)}
+    .library-icon{width:58px;height:58px;border-radius:10px;display:grid;place-items:center;color:#fff;background:var(--nlp-gradient);margin-bottom:12px}
+    .library-features{list-style:none;padding-left:0;margin:0;color:var(--gray);font-size:0.95rem}
+    .library-features li{padding-left:16px;position:relative;margin-bottom:8px}
+    .library-features li::before{content:'•';position:absolute;left:0;color:var(--nlp)}
+
+    /* Process/NLP pipeline visuals */
+    .nlp-process{background:#fff;border-radius:12px;padding:20px;margin-top:12px;box-shadow:var(--shadow-sm)}
+    .process-steps{display:flex;align-items:center;gap:18px;position:relative;flex-wrap:wrap}
+    .process-step{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:110px}
+    .step-icon{width:52px;height:52px;border-radius:12px;background:var(--nlp-gradient);display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px}
+    .process-connector{position:absolute;left:80px;right:80px;top:28px;height:2px;background:var(--nlp);opacity:0.12;z-index:0}
+
+    /* Steps */
+    .steps-section{counter-reset:step-counter}
+    .steps-section .step-item{display:flex;padding-left:92px;position:relative;margin-bottom:30px;gap:14px}
+    .steps-section .step-item:before{content:counter(step-counter);counter-increment:step-counter;position:absolute;left:0;top:0;width:72px;height:72px;border-radius:12px;background:var(--nlp-gradient);color:#fff;display:grid;place-items:center;font-weight:800;font-size:1.2rem;box-shadow:0 10px 28px rgba(124,58,237,0.12)}
+    .step-content h4{margin:0 0 8px 0}
+
+    /* Applications / app-image */
+    .application-card{overflow:hidden}
+    .app-image{height:180px;background:linear-gradient(135deg,#9c27b0,#7b1fa2);display:flex;align-items:center;justify-content:center;color:#fff;font-size:40px}
+
+    /* success / warning boxes */
+    .success-box{background:#e8f5e9;border-left:4px solid #4caf50;padding:16px;border-radius:8px;margin-top:12px;color:#1b5e20}
+    .warning-box{background:#fff8e1;border-left:4px solid #ffc107;padding:16px;border-radius:8px;margin-top:12px;color:#664d03}
+
+   /* ---------------- FOOTER ---------------- */
+.footer {
+    background: var(--darker);
+    color: #fff;
+    padding: 60px 20px 40px;
+}
+
+/* Footer Grid */
+.footer .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 28px;
+}
+
+/* Footer Headings */
+.footer .footer-links h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+/* Footer Links */
+.footer a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.footer a:hover {
+    color: #ffffff;
+}
+
+/* Footer Lists */
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+/* Logo/About Section */
+.footer-about p {
+    margin-top: 15px;
+    line-height: 1.6;
+    max-width: 280px;
+}
+
+/* ---------------- COPYRIGHT ---------------- */
+.footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-top: 1px solid rgba(255,255,255,0.2);
+
+    color: rgba(255,255,255,0.85);
+    font-size: 0.95rem;
+    position: relative;
+}
+
+/* Left & Right Lines */
+.footer-bottom::before,
+.footer-bottom::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.25);
+    margin: 0 12px;
+}
+
+/* Remove lines on phones */
+@media (max-width: 600px) {
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+    .footer-bottom::before,
+    .footer-bottom::after {
+        display: none;
+    }
+}
+
+
+    /* ========== Mobile responsive behavior ========== */
+    @media (max-width: 992px){
+      .content-wrapper{flex-direction:column;padding:20px}
+      .sidebar{width:100%;order:-1;margin-bottom:20px}
+      .nlp-title{font-size:1.9rem}
+    }
+
+    /* Off-canvas nav (mobile) - use 100vw to avoid scroll artifacts */
+    @media (max-width: 768px){
+      .nav{
+        position:fixed;
+        inset:0 auto auto 0; /* top:0; right:auto; left:0 - using inset ensures no horizontal offset issues */
+        height:100vh;
+        width:100vw;
+        transform:translateX(100vw);
+        transition:transform .28s ease,opacity .28s ease;
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        padding-top:var(--header-height);
+        background:#fff;
+        z-index:1190;
+        overflow-y:auto;
+        opacity:0;
+      }
+      .nav.open{transform:translateX(0);opacity:1}
+      .nav ul{flex-direction:column;gap:18px;padding:18px;width:100%}
+      .nav a{padding:12px 18px;border-bottom:1px solid #f3f3f3;width:100%}
+      .mobile-menu-toggle{display:block}
+    }
+
+    /* small phone adjustments */
+    @media (max-width:420px){
+      .nlp-title{font-size:1.6rem}
+      .container{padding-left:14px;padding-right:14px}
+      .code-block{padding:14px}
+      .steps-section .step-item{padding-left:0;padding-top:66px}
+      .steps-section .step-item:before{left:auto;top:0;right:calc(100% - 80px)}
+    }
+
+    a:focus, button:focus { outline:3px solid rgba(124,58,237,0.14); outline-offset:3px; border-radius:6px }
+    @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header" role="banner">
+    <div class="container">
+      <div style="display:flex;align-items:center;gap:16px">
+        <div class="logo">
+          <a href="index.html" aria-label="Smart AI & ML Projects Home">
+            <img src="assets/images/logo.png" alt="logo">
+          </a>
+        </div>
+      </div>
+
+      <nav class="nav" id="main-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="blogs.html">Blog</a></li>
+          <li><a href="case-studies.html">Case Studies</a></li>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="post.html">Build Your First Neural Network</a></li>
+          <li><a href="contact.html" class="btn btn-primary">Contact</a></li>
+        </ul>
+      </nav>
+
+      <button class="mobile-menu-toggle" id="mobileToggle" aria-label="Open navigation menu" aria-controls="main-nav" aria-expanded="false" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="nlp-hero" aria-labelledby="hero-title">
+    <div class="container">
+      <span class="nlp-badge">Beginner Friendly</span>
+      <h1 id="hero-title" class="nlp-title">Introduction to Natural Language Processing with Python</h1>
+      <div class="nlp-meta">
+        <div class="meta-item"><i class="far fa-calendar"></i> August 15, 2025</div>
+        <div class="meta-item"><i class="far fa-clock"></i> 18 min read</div>
+        <div class="meta-item"><i class="far fa-user"></i> Vishamber</div>
+      </div>
+      <p style="margin-top:14px;color:var(--dark);max-width:780px">Complete beginner's guide to Natural Language Processing (NLP) with Python. Learn text processing, sentiment analysis, and build your first NLP applications.</p>
+    </div>
+  </section>
+
+  <!-- Main content + sidebar -->
+  <div class="container content-wrapper">
+    <main class="main-content" role="main">
+
+      <section class="content-section" id="what-is-nlp">
+        <h2>What is Natural Language Processing?</h2>
+        <p>Natural Language Processing (NLP) is a branch of artificial intelligence that focuses on enabling computers to understand, interpret, and generate human language. It combines computational linguistics with machine learning to process and analyze large amounts of natural language data.</p>
+
+        <p>NLP powers many applications we use daily, including virtual assistants, translation services, spam filters, and sentiment analysis tools. Understanding NLP is crucial for building intelligent systems that can interact with humans naturally.</p>
+
+        <div class="nlp-process" aria-hidden="false">
+          <h3>The NLP Pipeline</h3>
+          <div class="process-steps">
+            <div class="process-step"><div class="step-icon"><i class="fas fa-text-height"></i></div><span class="step-label">Text Preprocessing</span></div>
+            <div class="process-step"><div class="step-icon"><i class="fas fa-tags"></i></div><span class="step-label">Tokenization</span></div>
+            <div class="process-step"><div class="step-icon"><i class="fas fa-code"></i></div><span class="step-label">Feature Extraction</span></div>
+            <div class="process-step"><div class="step-icon"><i class="fas fa-brain"></i></div><span class="step-label">Model Training</span></div>
+            <div class="process-step"><div class="step-icon"><i class="fas fa-chart-line"></i></div><span class="step-label">Evaluation</span></div>
+            <div class="process-connector" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <div class="info-box" style="margin-top:14px">
+          <p><strong>Key Insight:</strong> NLP doesn't just process words as strings—it understands context, sentiment, relationships, and meaning, making it one of the most complex and exciting fields in AI.</p>
+        </div>
+      </section>
+
+      <section class="content-section" id="libraries">
+        <h2>Essential Python Libraries for NLP</h2>
+
+        <div class="libraries-section">
+          <div class="libraries-grid">
+            <div class="library-card">
+              <div class="library-icon"><i class="fas fa-book"></i></div>
+              <h3 class="library-title">NLTK</h3>
+              <p class="library-desc">Natural Language Toolkit - The classic library for NLP in Python</p>
+              <ul class="library-features">
+                <li>Tokenization</li>
+                <li>Stemming & Lemmatization</li>
+                <li>POS Tagging</li>
+                <li>Named Entity Recognition</li>
+              </ul>
+            </div>
+
+            <div class="library-card">
+              <div class="library-icon"><i class="fas fa-rocket"></i></div>
+              <h3 class="library-title">spaCy</h3>
+              <p class="library-desc">Industrial-strength NLP with excellent performance</p>
+              <ul class="library-features">
+                <li>Fast processing</li>
+                <li>Pre-trained models</li>
+                <li>Dependency parsing</li>
+                <li>Entity recognition</li>
+              </ul>
+            </div>
+
+            <div class="library-card">
+              <div class="library-icon"><i class="fas fa-brain"></i></div>
+              <h3 class="library-title">Transformers</h3>
+              <p class="library-desc">State-of-the-art models like BERT and GPT</p>
+              <ul class="library-features">
+                <li>Pre-trained models</li>
+                <li>Transfer learning</li>
+                <li>Multiple languages</li>
+                <li>Fine-tuning capabilities</li>
+              </ul>
+            </div>
+
+            <div class="library-card">
+              <div class="library-icon"><i class="fas fa-chart-bar"></i></div>
+              <h3 class="library-title">Gensim</h3>
+              <p class="library-desc">Topic modeling and document similarity</p>
+              <ul class="library-features">
+                <li>Word2Vec</li>
+                <li>Doc2Vec</li>
+                <li>LDA</li>
+                <li>Similarity detection</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section" id="implementation">
+        <h2>Step-by-Step NLP Implementation</h2>
+
+        <div class="steps-section">
+          <!-- Step 1 -->
+          <div class="step-item">
+            <div class="step-content">
+              <h4>Step 1: Install Required Libraries</h4>
+              <p>Start by installing the essential NLP libraries for Python.</p>
+
+              <div class="code-block" aria-label="Install code">
+                <div class="code-header"><span class="code-language">Bash</span></div>
+                <button class="copy-btn">Copy Code</button>
+                <pre><code># Install essential NLP libraries
+pip install nltk spacy gensim transformers
+pip install scikit-learn pandas numpy matplotlib
+
+# Download spaCy English model
+python -m spacy download en_core_web_sm
+
+# Download NLTK data
+python -c "import nltk; nltk.download('popular')"</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step-item">
+            <div class="step-content">
+              <h4>Step 2: Basic Text Preprocessing</h4>
+              <p>Clean and prepare text data for analysis using NLTK.</p>
+
+              <div class="code-block">
+                <div class="code-header"><span class="code-language">Python</span></div>
+                <button class="copy-btn">Copy Code</button>
+                <pre><code>import nltk
+import re
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+
+def preprocess_text(text):
+    text = text.lower()
+    text = re.sub(r'[^a-zA-Z\s]', '', text)
+    tokens = word_tokenize(text)
+    stop_words = set(stopwords.words('english'))
+    tokens = [token for token in tokens if token not in stop_words]
+    lemmatizer = WordNetLemmatizer()
+    tokens = [lemmatizer.lemmatize(token) for token in tokens]
+    return ' '.join(tokens)</code></pre>
+              </div>
+
+              <div class="info-box">
+                <p><strong>Preprocessing Steps:</strong> Lowercasing, removing special characters, tokenization, stopword removal, and lemmatization are essential for preparing text data for analysis.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step-item">
+            <div class="step-content">
+              <h4>Step 3: Sentiment Analysis with spaCy</h4>
+              <p>Perform sentiment analysis on text data using spaCy's capabilities (TextBlob used for simple polarity in this example).</p>
+
+              <div class="code-block">
+                <div class="code-header"><span class="code-language">Python</span></div>
+                <button class="copy-btn">Copy Code</button>
+                <pre><code>import spacy
+from textblob import TextBlob
+
+nlp = spacy.load("en_core_web_sm")
+
+def analyze_sentiment(text):
+    blob = TextBlob(text)
+    sentiment = blob.sentiment
+    return {
+        'polarity': sentiment.polarity,
+        'subjectivity': sentiment.subjectivity,
+        'sentiment': 'positive' if sentiment.polarity > 0 else 'negative' if sentiment.polarity < 0 else 'neutral'
+    }</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="step-item">
+            <div class="step-content">
+              <h4>Step 4: Named Entity Recognition</h4>
+              <p>Extract entities like people, organizations, and locations from text.</p>
+
+              <div class="code-block">
+                <div class="code-header"><span class="code-language">Python</span></div>
+                <button class="copy-btn">Copy Code</button>
+                <pre><code>import spacy
+nlp = spacy.load("en_core_web_sm")
+def extract_entities(text):
+    doc = nlp(text)
+    entities = {}
+    for ent in doc.ents:
+        entities.setdefault(ent.label_, []).append(ent.text)
+    return entities</code></pre>
+              </div>
+
+              <div class="success-box">
+                <p><strong>Entity Types:</strong> Common entity types include PERSON, ORGANIZATION, GPE (Geopolitical Entity), DATE, TIME, and MONEY.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="content-section" id="applications">
+        <h2>Real-World NLP Applications</h2>
+
+        <div class="applications-grid">
+          <div class="application-card">
+            <div class="app-image"><i class="fas fa-robot"></i></div>
+            <div class="app-content">
+              <h3 class="app-title">Chatbots & Virtual Assistants</h3>
+              <p class="app-desc">AI-powered conversational agents that understand and respond to human queries naturally.</p>
+            </div>
+          </div>
+
+          <div class="application-card">
+            <div class="app-image"><i class="fas fa-language"></i></div>
+            <div class="app-content">
+              <h3 class="app-title">Machine Translation</h3>
+              <p class="app-desc">Systems like Google Translate that convert text between different languages automatically.</p>
+            </div>
+          </div>
+
+          <div class="application-card">
+            <div class="app-image"><i class="fas fa-chart-pie"></i></div>
+            <div class="app-content">
+              <h3 class="app-title">Sentiment Analysis</h3>
+              <p class="app-desc">Analyzing customer reviews, social media posts to determine public opinion and sentiment.</p>
+            </div>
+          </div>
+
+          <div class="application-card">
+            <div class="app-image"><i class="fas fa-search"></i></div>
+            <div class="app-content">
+              <h3 class="app-title">Text Classification</h3>
+              <p class="app-desc">Categorizing emails as spam/ham, news articles by topic, or support tickets by urgency.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section" id="complete-project">
+        <h2>Complete NLP Project Example</h2>
+        <p>Here's a complete example of building a simple text classifier:</p>
+
+        <div class="code-block">
+          <div class="code-header"><span class="code-language">Python - Complete NLP Classifier</span></div>
+          <button class="copy-btn">Copy Full Code</button>
+          <pre><code>import pandas as pd
+#!/usr/bin/env python3
+"""
+Complete NLP classifier example:
+- small sample dataset
+- preprocessing (lowercase, remove non-alpha, tokenize, stopwords, lemmatize)
+- TF-IDF vectorization
+- Multinomial Naive Bayes training
+- evaluation and example predictions
+- save/load model with joblib
+"""
+
+pip install numpy pandas scikit-learn nltk joblib
+
+import re
+import pathlib
+import joblib
+import numpy as np
+import pandas as pd
+from typing import List, Dict
+
+# sklearn
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.metrics import classification_report, accuracy_score, confusion_matrix
+
+# NLTK
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+
+# Ensure required NLTK data is available
+def ensure_nltk_data():
+    try:
+        nltk.data.find("tokenizers/punkt")
+    except LookupError:
+        nltk.download("punkt", quiet=True)
+    try:
+        nltk.data.find("corpora/stopwords")
+    except LookupError:
+        nltk.download("stopwords", quiet=True)
+    try:
+        nltk.data.find("corpora/wordnet")
+    except LookupError:
+        nltk.download("wordnet", quiet=True)
+    try:
+        nltk.data.find("taggers/averaged_perceptron_tagger")
+    except LookupError:
+        nltk.download("averaged_perceptron_tagger", quiet=True)
+
+ensure_nltk_data()
+
+# Preprocessing function
+lemmatizer = WordNetLemmatizer()
+stop_words = set(stopwords.words("english"))
+
+def preprocess_text(text: str) -> str:
+    """
+    Lowercase, remove non-alphabetic chars, tokenize, remove stopwords, lemmatize.
+    Returns cleaned single string.
+    """
+    if not isinstance(text, str):
+        text = str(text)
+    # Lowercase
+    text = text.lower()
+    # Remove URLs, emails
+    text = re.sub(r"http\S+|www\S+|https\S+", " ", text)
+    text = re.sub(r"\S+@\S+", " ", text)
+    # Keep letters and spaces
+    text = re.sub(r"[^a-z\s]", " ", text)
+    # Collapse spaces
+    text = re.sub(r"\s+", " ", text).strip()
+    # Tokenize
+    tokens = word_tokenize(text)
+    # Remove stopwords and short tokens, lemmatize
+    tokens = [lemmatizer.lemmatize(tok) for tok in tokens if tok not in stop_words and len(tok) > 1]
+    return " ".join(tokens)
+
+# Build a small sample dataset (for demonstration)
+def build_sample_dataset() -> pd.DataFrame:
+    data = {
+        "text": [
+            "I love this product, it's amazing and works great!",
+            "Terrible experience. The product broke after two days. Worst purchase ever.",
+            "Fast shipping and excellent quality. Highly recommend.",
+            "Not satisfied with the quality. Very disappointed by customer service.",
+            "Great value for money. I'm very happy with this.",
+            "Waste of money. It didn't work as advertised.",
+            "The item arrived on time and matches the description.",
+            "Battery life is poor and the screen has dead pixels.",
+            "Superb performance! Exceeded my expectations.",
+            "Bad packaging, product was damaged when it arrived.",
+            "Okay product, not great but does the job.",
+            "I will buy this again — fantastic!",
+            "Do not buy this. Cheap materials and awful build.",
+            "Customer support helped me quickly and resolved my issue.",
+            "The features are exactly what I needed. Very pleased.",
+            "Awful — stopped working after a week.",
+            "Decent product for the price, acceptable build quality.",
+            "Excellent craftsmanship, premium feel and look.",
+            "The app frequently crashes. Unusable on my phone.",
+            "Five stars. Love it!",
+        ],
+        # labels: positive / negative / neutral (we'll map to positive/negative for classifier demo)
+        "label": [
+            "positive", "negative", "positive", "negative", "positive",
+            "negative", "positive", "negative", "positive", "negative",
+            "neutral", "positive", "negative", "positive", "positive",
+            "negative", "neutral", "positive", "negative", "positive"
+        ]
+    }
+    return pd.DataFrame(data)
+
+# Map neutral to positive/negative for binary classification (optional)
+def relabel_binary(df: pd.DataFrame) -> pd.DataFrame:
+    # Convert 'neutral' to 'positive' or 'negative' depending on simple rule or keep as neutral.
+    # For demo we'll keep binary: treat 'neutral' as 'positive' (simplest)
+    df = df.copy()
+    df["label"] = df["label"].replace({"neutral": "positive"})
+    return df
+
+# Train pipeline
+def train_pipeline(df: pd.DataFrame):
+    # Preprocess texts
+    df["processed"] = df["text"].apply(preprocess_text)
+    X = df["processed"].values
+    y = df["label"].values
+
+    # Train/test split (stratify to keep label balance)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.25, random_state=42, stratify=y
+    )
+
+    # Vectorize
+    vectorizer = TfidfVectorizer(max_features=1000, ngram_range=(1,2))
+    X_train_tfidf = vectorizer.fit_transform(X_train)
+    X_test_tfidf = vectorizer.transform(X_test)
+
+    # Model
+    model = MultinomialNB(alpha=1.0)
+    model.fit(X_train_tfidf, y_train)
+
+    # Evaluate
+    y_pred = model.predict(X_test_tfidf)
+    acc = accuracy_score(y_test, y_pred)
+    clf_report = classification_report(y_test, y_pred, digits=4)
+    cm = confusion_matrix(y_test, y_pred, labels=np.unique(y))
+
+    print("=== EVALUATION ===")
+    print(f"Accuracy: {acc:.4f}")
+    print("\nClassification Report:")
+    print(clf_report)
+    print("Confusion Matrix:")
+    print(cm)
+
+    # Return objects for later use
+    return vectorizer, model
+
+# Save and load helpers
+def save_artifacts(vectorizer, model, folder="models", prefix="nlp"):
+    p = pathlib.Path(folder)
+    p.mkdir(parents=True, exist_ok=True)
+    vec_path = p / f"{prefix}_vectorizer.joblib"
+    model_path = p / f"{prefix}_model.joblib"
+    joblib.dump(vectorizer, vec_path)
+    joblib.dump(model, model_path)
+    print(f"Saved vectorizer -> {vec_path}")
+    print(f"Saved model -> {model_path}")
+    return vec_path, model_path
+
+def load_artifacts(folder="models", prefix="nlp"):
+    p = pathlib.Path(folder)
+    vec_path = p / f"{prefix}_vectorizer.joblib"
+    model_path = p / f"{prefix}_model.joblib"
+    vectorizer = joblib.load(vec_path)
+    model = joblib.load(model_path)
+    return vectorizer, model
+
+# Predict helper
+def predict_texts(texts: List[str], vectorizer: TfidfVectorizer, model: MultinomialNB) -> List[Dict]:
+    processed = [preprocess_text(t) for t in texts]
+    X = vectorizer.transform(processed)
+    preds = model.predict(X)
+    probs = model.predict_proba(X) if hasattr(model, "predict_proba") else None
+    results = []
+    for i, t in enumerate(texts):
+        r = {"text": t, "processed": processed[i], "prediction": preds[i]}
+        if probs is not None:
+            # attach probability for predicted class
+            class_index = list(model.classes_).index(preds[i])
+            r["probability"] = float(probs[i, class_index])
+        results.append(r)
+    return results
+
+# Main runnable
+if __name__ == "__main__":
+    print("Building sample dataset...")
+    df = build_sample_dataset()
+    df = relabel_binary(df)
+
+    print("Dataset distribution:\n", df["label"].value_counts(), "\n")
+
+    print("Training pipeline...")
+    vectorizer, model = train_pipeline(df)
+
+    # Save artifacts
+    save_artifacts(vectorizer, model, folder="models", prefix="nlp_example")
+
+    # Example predictions
+    examples = [
+        "This product is fantastic and the battery lasts forever!",
+        "Absolute junk. It died in two days and support ignored me.",
+        "Delivery was okay, product works as expected."
+    ]
+    print("\nExample predictions:")
+    vec, mdl = load_artifacts(folder="models", prefix="nlp_example")
+    results = predict_texts(examples, vec, mdl)
+    for r in results:
+        print("-" * 60)
+        print("Original:", r["text"])
+        print("Processed:", r["processed"])
+        print("Predicted:", r["prediction"], f"(prob {r.get('probability', 'n/a')})")
+
+</code></pre>
+        </div>
+      </section>
+
+      <section class="content-section" id="next-steps">
+        <h2>Next Steps in Your NLP Journey</h2>
+
+        <div class="next-steps">
+          <div class="next-steps-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px">
+            <div class="next-step-card" style="background:#f8f9fa;border-radius:12px;padding:16px">
+              <div class="next-step-icon"><i class="fas fa-graduation-cap"></i></div>
+              <h4 class="next-step-title">Advanced Techniques</h4>
+              <p>Learn about word embeddings, transformers, and advanced neural architectures</p>
+            </div>
+            <div class="next-step-card" style="background:#f8f9fa;border-radius:12px;padding:16px">
+              <div class="next-step-icon"><i class="fas fa-project-diagram"></i></div>
+              <h4 class="next-step-title">Build Projects</h4>
+              <p>Create chatbots, text summarizers, or document classification systems</p>
+            </div>
+            <div class="next-step-card" style="background:#f8f9fa;border-radius:12px;padding:16px">
+              <div class="next-step-icon"><i class="fas fa-language"></i></div>
+              <h4 class="next-step-title">Multilingual NLP</h4>
+              <p>Explore NLP techniques for different languages and cross-lingual applications</p>
+            </div>
+            <div class="next-step-card" style="background:#f8f9fa;border-radius:12px;padding:16px">
+              <div class="next-step-icon"><i class="fas fa-rocket"></i></div>
+              <h4 class="next-step-title">Production Deployment</h4>
+              <p>Learn to deploy NLP models as APIs and integrate them into applications</p>
+            </div>
+          </div>
+        </div>
+
+        <p style="margin-top:14px">Congratulations! You've taken your first steps into the fascinating world of Natural Language Processing. Continue practicing with different datasets and gradually tackle more complex NLP challenges.</p>
+      </section>
+
+    </main>
+
+    <aside class="sidebar" role="complementary" aria-label="Table of contents and resources">
+      <div class="toc" id="toc">
+        <h3 class="toc-title">Table of Contents</h3>
+        <ul class="toc-list">
+          <li class="toc-item"><a href="#what-is-nlp">What is NLP?</a></li>
+          <li class="toc-item"><a href="#libraries">Python Libraries</a></li>
+          <li class="toc-item"><a href="#implementation">Step-by-Step Guide</a></li>
+          <li class="toc-item"><a href="#applications">Real-World Applications</a></li>
+          <li class="toc-item"><a href="#complete-project">Complete Project</a></li>
+          <li class="toc-item"><a href="#next-steps">Next Steps</a></li>
+        </ul>
+
+        <div style="margin-top:16px">
+          <a class="btn btn-primary" href="tools.html" style="display:block;text-align:center;margin-bottom:10px">NLP Tools & Resources</a>
+          <a class="btn btn-secondary" href="blogs.html" style="display:block;text-align:center">All Tutorials</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div class="footer-about">
+        <img src="assets/images/logo.png" alt="Smart AI & ML Projects"
+             style="width:65px;height:65px;border-radius:50%;object-fit:cover;
+                    border:3px solid #007BFF;box-shadow:0 4px 15px rgba(0,0,0,0.3);
+                    transition:0.3s;"
+             onmouseover="this.style.transform='scale(1.1)';"
+             onmouseout="this.style.transform='scale(1)'">
+
+        <p>Providing high-quality tutorials, case studies, and tools for AI and machine learning enthusiasts.</p>
+
+        <div style="display:flex;justify-content:center;gap:15px;margin-top:20px;">
+          <a href="https://x.com/Vishamb45787267" target="_blank" aria-label="Twitter"
+             style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;
+                    border-radius:50%;background:linear-gradient(135deg,#1DA1F2,#0d47a1);
+                    box-shadow:0 4px 15px rgba(0,0,0,0.3)">
+             <i class="fab fa-twitter" style="color:#fff"></i>
+          </a>
+
+          <a href="https://www.linkedin.com/in/vishamber-b57369254/" target="_blank" aria-label="LinkedIn"
+             style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;
+                    border-radius:50%;background:linear-gradient(135deg,#0077B5,#004971);
+                    box-shadow:0 4px 15px rgba(0,0,0,0.3)">
+             <i class="fab fa-linkedin-in" style="color:#fff"></i>
+          </a>
+
+          <a href="https://www.instagram.com/digital_trader_vishamber/" target="_blank" aria-label="Instagram"
+             style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;
+                    border-radius:50%;background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af);
+                    box-shadow:0 4px 15px rgba(0,0,0,0.3)">
+             <i class="fab fa-instagram" style="color:#fff"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="blogs.html">Blog</a></li>
+          <li><a href="case-studies.html">Case Studies</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="post.html">Build Your First Neural Network</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="contact.html">Get in Touch</a></li>
+          <li><a href="mailto:smartaimlprojects.in@gmail.com">smartaimlprojects.in@gmail.com</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Smart AI & ML Projects. All rights reserved.</p>
+    </div>
+
+  </div>
+</footer>
+
+  <script>
+    (function(){
+      const mobileToggle = document.getElementById('mobileToggle');
+      const nav = document.getElementById('main-nav');
+      const body = document.body;
+
+      function setNav(open){
+        if(open){
+          nav.classList.add('open');
+          mobileToggle.classList.add('active');
+          mobileToggle.setAttribute('aria-expanded','true');
+          body.style.overflow = 'hidden';
+        } else {
+          nav.classList.remove('open');
+          mobileToggle.classList.remove('active');
+          mobileToggle.setAttribute('aria-expanded','false');
+          body.style.overflow = '';
+        }
+      }
+
+      mobileToggle.addEventListener('click', function(e){
+        e.stopPropagation();
+        setNav(!nav.classList.contains('open'));
+        if(nav.classList.contains('open')){
+          const first = nav.querySelector('a');
+          if(first) first.focus();
+        }
+      });
+
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape' && nav.classList.contains('open')){
+          setNav(false);
+          mobileToggle.focus();
+        }
+      });
+
+      document.addEventListener('click', function(e){
+        if(!nav.contains(e.target) && !mobileToggle.contains(e.target) && nav.classList.contains('open')){
+          setNav(false);
+        }
+      });
+
+      nav.querySelectorAll('a').forEach(a => a.addEventListener('click', function(){
+        if(window.innerWidth <= 768) setNav(false);
+      }));
+
+      // copy-to-clipboard for code blocks
+      document.querySelectorAll('.code-block .copy-btn').forEach(btn => {
+        btn.addEventListener('click', async function(){
+          const code = this.closest('.code-block')?.querySelector('pre code') || this.closest('.code-block')?.querySelector('pre');
+          if(!code) return;
+          const text = code.textContent;
+          try {
+            await navigator.clipboard.writeText(text);
+            const old = this.textContent;
+            this.textContent = 'Copied ✓';
+            setTimeout(()=> this.textContent = old, 1500);
+          } catch(err){
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); this.textContent = 'Copied ✓'; setTimeout(()=> this.textContent = 'Copy',1500); }
+            catch(e) { alert('Copy failed — please copy manually.'); }
+            document.body.removeChild(ta);
+          }
+        });
+      });
+
+      // TOC highlight
+      const tocLinks = document.querySelectorAll('.toc-list a');
+      const sections = Array.from(document.querySelectorAll('.content-section[id]'));
+      function highlightTOC(){
+        const offset = window.innerHeight * 0.15;
+        let current = null;
+        sections.forEach(s => {
+          const rect = s.getBoundingClientRect();
+          if(rect.top <= offset) current = s.id;
+        });
+        tocLinks.forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === ('#'+current));
+        });
+      }
+      document.addEventListener('scroll', highlightTOC, {passive:true});
+      window.addEventListener('load', highlightTOC);
+      window.addEventListener('resize', highlightTOC);
+
+      // smooth scroll for TOC links
+      document.querySelectorAll('.toc-list a').forEach(a=>{
+        a.addEventListener('click', function(e){
+          const href = this.getAttribute('href');
+          if(!href || !href.startsWith('#')) return;
+          e.preventDefault();
+          const t = document.querySelector(href);
+          if(!t) return;
+          const top = t.getBoundingClientRect().top + window.pageYOffset - (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 80) - 8;
+          window.scrollTo({top, behavior:'smooth'});
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

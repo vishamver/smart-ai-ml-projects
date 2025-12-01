@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Neural Networks for Beginners | Smart AI & ML Projects</title>
+    <meta name="description" content="Learn the fundamentals of neural networks and how to build your first model from scratch using Python and TensorFlow">
+    <meta name="keywords" content="neural networks, AI tutorial, machine learning, deep learning, TensorFlow, Python AI">
+    <meta name="author" content="Vishamber">
+       <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Apple Touch Icon (iOS Home Screen) -->
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo.png">
+
+<!-- Favicon (Standard Browsers) -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo.png">
+
+<!-- Web App Manifest (PWA Support) -->
+<link rel="manifest" href="manifest.json">
+
+<!-- Safari Pinned Tab (macOS) -->
+<link rel="mask-icon" href="assets/images/logo.svg" color="#0a84ff">
+
+<!-- Microsoft Tile Color (Windows) -->
+<meta name="msapplication-TileColor" content="#0a84ff">
+
+<!-- Mobile Browser Theme Color -->
+<meta name="theme-color" content="#0a84ff">
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #0066ff;
+            --primary-dark: #0052cc;
+            --secondary: #6c63ff;
+            --accent: #ff6b6b;
+            --dark: #1a1a2e;
+            --darker: #16213e;
+            --light: #f8f9fa;
+            --lighter: #ffffff;
+            --gray: #6b7280;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: var(--lighter);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+
+        .header.scrolled {
+            padding: 10px 0;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+
+        .logo img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            position: relative;
+            padding: 8px 0;
+            transition: var(--transition);
+        }
+
+        .nav a:not(.btn):after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav a:not(.btn):hover:after {
+            width: 100%;
+        }
+
+        .nav a.active {
+            color: var(--primary);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .mobile-menu-toggle span {
+            height: 3px;
+            width: 100%;
+            background-color: var(--dark);
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 102, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Tutorial Hero */
+        .tutorial-hero {
+            padding: 160px 0 80px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tutorial-badge {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tutorial-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--darker);
+        }
+
+        .tutorial-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Content Layout */
+        .content-wrapper {
+            display: flex;
+            gap: 40px;
+            padding: 60px 0;
+        }
+
+        .main-content {
+            flex: 1;
+            max-width: 800px;
+        }
+
+        .sidebar {
+            width: 300px;
+        }
+
+        /* Table of Contents */
+        .toc {
+            position: sticky;
+            top: 100px;
+            background: white;
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .toc-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-item {
+            margin-bottom: 12px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .toc-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .toc-item a {
+            color: var(--dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .toc-item a:hover {
+            color: var(--primary);
+        }
+
+        /* Content Sections */
+        .content-section {
+            margin-bottom: 50px;
+        }
+
+        .content-section h2 {
+            font-size: 2rem;
+            color: var(--darker);
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eaeaea;
+            margin-bottom: 25px;
+        }
+
+        .content-section h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin: 30px 0 15px;
+        }
+
+        .content-section p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .content-section ul, .content-section ol {
+            margin-bottom: 20px;
+            padding-left: 30px;
+        }
+
+        .content-section li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+
+        /* Code Blocks */
+        .code-block {
+            background: var(--darker);
+            color: white;
+            border-radius: var(--radius);
+            padding: 25px;
+            margin: 25px 0;
+            overflow-x: auto;
+            font-family: monospace;
+            line-height: 1.6;
+        }
+
+        .code-comment {
+            color: #6b7280;
+        }
+
+        .code-keyword {
+            color: #ff6b6b;
+        }
+
+        .code-function {
+            color: #6c63ff;
+        }
+
+        .code-string {
+            color: #28a745;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: #e0f2fe;
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 4px;
+            margin: 25px 0;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 25px 0;
+        }
+
+        /* Neural Network Visualization */
+        .nn-visualization {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .nn-diagram {
+            width: 100%;
+            height: 250px;
+            position: relative;
+            margin: 30px 0;
+        }
+
+        .nn-layer {
+            position: absolute;
+            height: 100%;
+            width: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .nn-layer-1 { left: 15%; }
+        .nn-layer-2 { left: 45%; }
+        .nn-layer-3 { left: 75%; }
+
+        .nn-neuron {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--gradient);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nn-connections {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .nn-connection {
+            position: absolute;
+            background: linear-gradient(to right, rgba(37, 99, 235, 0.2), rgba(124, 58, 237, 0.2));
+            transform-origin: 0 50%;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--darker);
+            color: white;
+            padding: 80px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-about img {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+            margin-bottom: 20px;
+        }
+
+        .footer-about img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .footer-about p {
+            margin-bottom: 25px;
+            opacity: 0.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--gradient);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--gradient);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                order: -1;
+                margin-bottom: 40px;
+            }
+            
+            .toc {
+                position: relative;
+                top: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tutorial-title {
+                font-size: 2.3rem;
+            }
+            
+            .nav ul {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
+            .nav.active {
+                display: block;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                padding: 40px 20px;
+                transition: var(--transition);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav.active ul {
+                flex-direction: column;
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .tutorial-title {
+                font-size: 2rem;
+            }
+            
+            .tutorial-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container">
+            <!-- Logo -->
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.png" alt="Smart AI & ML Projects">
+                </a>
+            </div>
+
+            <!-- Mobile Toggle Button -->
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Navigation -->
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="blogs.html">Blog</a></li>
+                    <li><a href="case-studies.html">Case Studies</a></li>
+                    <li><a href="tools.html">Tools</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="post.html" class="active">Build Your First Neural Network</a></li>
+                    <li><a href="contact.html" class="btn btn-primary">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Tutorial Hero Section -->
+    <section class="tutorial-hero">
+        <div class="container">
+            <span class="tutorial-badge">Beginner Friendly</span>
+            <h1 class="tutorial-title">Introduction to Neural Networks for Beginners</h1>
+            <div class="tutorial-meta">
+                <div class="meta-item">
+                    <i class="far fa-calendar"></i>
+                    <span>April 12, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="far fa-clock"></i>
+                    <span>10 min read</span>
+                </div>
+                <div class="meta-item">
+                    <i class="far fa-user"></i>
+                    <span>Vishamber</span>
+                </div>
+            </div>
+            <p>Learn the fundamentals of neural networks and how to build your first model from scratch using Python and TensorFlow.</p>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <div class="container content-wrapper">
+        <main class="main-content">
+            <section class="content-section">
+                <h2>What is a Neural Network?</h2>
+                <p>Neural networks are computing systems inspired by the human brain. They consist of interconnected nodes (neurons) that process and transmit information. These networks can learn to perform tasks by considering examples, generally without being programmed with task-specific rules.</p>
+                
+                <div class="nn-visualization">
+                    <h3>Simple Neural Network Structure</h3>
+                    <div class="nn-diagram">
+                        <div class="nn-layer nn-layer-1">
+                            <div class="nn-neuron"></div>
+                            <div class="nn-neuron"></div>
+                            <div class="nn-neuron"></div>
+                        </div>
+                        <div class="nn-layer nn-layer-2">
+                            <div class="nn-neuron"></div>
+                            <div class="nn-neuron"></div>
+                            <div class="nn-neuron"></div>
+                            <div class="nn-neuron"></div>
+                        </div>
+                        <div class="nn-layer nn-layer-3">
+                            <div class="nn-neuron"></div>
+                            <div class="nn-neuron"></div>
+                        </div>
+                        <div class="nn-connections">
+                            <!-- Connections will be generated by JS -->
+                        </div>
+                    </div>
+                    <p>Input Layer → Hidden Layers → Output Layer</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Key Components of Neural Networks</h2>
+                
+                <h3>Neurons</h3>
+                <p>Neurons are the basic units of neural networks. Each neuron receives input, processes it, and generates output that can be sent to other neurons.</p>
+                
+                <h3>Layers</h3>
+                <p>Neural networks are organized in layers:</p>
+                <ul>
+                    <li><strong>Input Layer:</strong> Receives the initial data</li>
+                    <li><strong>Hidden Layers:</strong> Process the information (can be multiple)</li>
+                    <li><strong>Output Layer:</strong> Produces the final result</li>
+                </ul>
+                
+                <h3>Weights and Biases</h3>
+                <p>Weights determine the strength of connections between neurons. Biases allow neurons to adjust their output independently of their inputs.</p>
+                
+                <h3>Activation Functions</h3>
+                <p>These functions determine whether a neuron should be activated, introducing non-linearity into the network. Common activation functions include:</p>
+                <ul>
+                    <li>Sigmoid</li>
+                    <li>ReLU (Rectified Linear Unit)</li>
+                    <li>Tanh</li>
+                    <li>Softmax</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>Building Your First Neural Network</h2>
+                <p>Let's create a simple neural network using Python and TensorFlow to classify handwritten digits from the MNIST dataset.</p>
+                
+                <h3>Step 1: Install Required Libraries</h3>
+                <div class="code-block">
+                    <span class="code-comment"># Install TensorFlow and other dependencies</span><br>
+                    pip install tensorflow numpy matplotlib
+                </div>
+                
+                <h3>Step 2: Import Libraries</h3>
+                <div class="code-block">
+                    <span class="code-keyword">import</span> tensorflow <span class="code-keyword">as</span> tf<br>
+                    <span class="code-keyword">from</span> tensorflow <span class="code-keyword">import</span> keras<br>
+                    <span class="code-keyword">import</span> numpy <span class="code-keyword">as</span> np<br>
+                    <span class="code-keyword">import</span> matplotlib.pyplot <span class="code-keyword">as</span> plt
+                </div>
+                
+                <h3>Step 3: Load and Prepare Data</h3>
+                <div class="code-block">
+                    <span class="code-comment"># Load MNIST dataset</span><br>
+                    (x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()<br><br>
+                    
+                    <span class="code-comment"># Normalize pixel values to be between 0 and 1</span><br>
+                    x_train = x_train / 255.0<br>
+                    x_test = x_test / 255.0<br><br>
+                    
+                    <span class="code-comment"># Reshape data for the neural network</span><br>
+                    x_train = x_train.reshape(-1, 28*28)<br>
+                    x_test = x_test.reshape(-1, 28*28)
+                </div>
+                
+                <h3>Step 4: Build the Neural Network Model</h3>
+                <div class="code-block">
+                    <span class="code-comment"># Create a sequential model</span><br>
+                    model = keras.Sequential([<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;keras.layers.Dense(128, activation='relu', input_shape=(784,)),<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;keras.layers.Dense(64, activation='relu'),<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;keras.layers.Dense(10, activation='softmax')<br>
+                    ])<br><br>
+                    
+                    <span class="code-comment"># Compile the model</span><br>
+                    model.compile(<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;optimizer='adam',<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;loss='sparse_categorical_crossentropy',<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;metrics=['accuracy']<br>
+                    )
+                </div>
+                
+                <div class="info-box">
+                    <p><strong>Note:</strong> The model above has an input layer (784 neurons), two hidden layers (128 and 64 neurons), and an output layer (10 neurons for digits 0-9).</p>
+                </div>
+                
+                <h3>Step 5: Train the Model</h3>
+                <div class="code-block">
+                    <span class="code-comment"># Train the model</span><br>
+                    history = model.fit(<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;x_train, y_train,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;epochs=10,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;batch_size=32,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;validation_split=0.2<br>
+                    )
+                </div>
+                
+                <h3>Step 6: Evaluate the Model</h3>
+                <div class="code-block">
+                    <span class="code-comment"># Evaluate on test data</span><br>
+                    test_loss, test_acc = model.evaluate(x_test, y_test)<br>
+                    print(f'Test accuracy: {test_acc}')
+                </div>
+                
+                <div class="warning-box">
+                    <p><strong>Tip:</strong> If you're new to Python, start with simpler examples before attempting neural networks. Understanding basic programming concepts is essential.</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>How Neural Networks Learn</h2>
+                <p>Neural networks learn through a process called backpropagation, which involves:</p>
+                <ol>
+                    <li><strong>Forward Pass:</strong> Input data is passed through the network to generate predictions</li>
+                    <li><strong>Loss Calculation:</strong> The difference between predictions and actual values is calculated</li>
+                    <li><strong>Backward Pass:</strong> The error is propagated back through the network</li>
+                    <li><strong>Weight Adjustment:</strong> Weights are adjusted to minimize the error</li>
+                </ol>
+                
+                <p>This process is repeated for many iterations (epochs) until the model achieves satisfactory performance.</p>
+            </section>
+
+            <section class="content-section">
+                <h2>Next Steps</h2>
+                <p>Now that you understand the basics of neural networks, you can explore more advanced topics:</p>
+                <ul>
+                    <li>Convolutional Neural Networks (CNNs) for image processing</li>
+                    <li>Recurrent Neural Networks (RNNs) for sequence data</li>
+                    <li>Transfer learning using pre-trained models</li>
+                    <li>Hyperparameter tuning to improve model performance</li>
+                </ul>
+                
+                <p>Practice is key to mastering neural networks. Try building different models with various architectures and datasets to strengthen your understanding.</p>
+            </section>
+        </main>
+
+        <aside class="sidebar">
+            <div class="toc">
+                <h3 class="toc-title">Table of Contents</h3>
+                <ul class="toc-list">
+                    <li class="toc-item"><a href="#what-is-nn">What is a Neural Network?</a></li>
+                    <li class="toc-item"><a href="#components">Key Components</a></li>
+                    <li class="toc-item"><a href="#building">Building Your First NN</a></li>
+                    <li class="toc-item"><a href="#learning">How Neural Networks Learn</a></li>
+                    <li class="toc-item"><a href="#next-steps">Next Steps</a></li>
+                </ul>
+                
+                <div style="margin-top: 30px;">
+                    <a href="blogs.html" class="btn btn-primary" style="display: block; text-align: center; margin-bottom: 15px;">More Tutorials</a>
+                    <a href="tools.html" class="btn btn-secondary" style="display: block; text-align: center;">AI Tools</a>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="assets/images/logo.png" alt="Smart AI & ML Projects">
+                    <p>Providing high-quality tutorials, case studies, and tools for AI and machine learning enthusiasts.</p>
+                    
+                    <div class="social-links">
+                        <a href="https://x.com/Vishamb45787267" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/vishamber-b57369254/" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.instagram.com/digital_trader_vishamber/" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="blogs.html">Blog</a></li>
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="tools.html">Tools</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="post.html">Build Your First Neural Network</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="contact.html">Get in Touch</a></li>
+                        <li><a href="mailto:smartaimlprojects.in@gmail.com">smartaimlprojects.in@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Smart AI & ML Projects. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Create neural network connections
+        document.addEventListener('DOMContentLoaded', function() {
+            const connectionsContainer = document.querySelector('.nn-connections');
+            const layers = document.querySelectorAll('.nn-layer');
+            
+            // Generate connections between layers
+            for (let i = 0; i < layers.length - 1; i++) {
+                const currentLayer = layers[i];
+                const nextLayer = layers[i + 1];
+                
+                const currentNeurons = currentLayer.querySelectorAll('.nn-neuron');
+                const nextNeurons = nextLayer.querySelectorAll('.nn-neuron');
+                
+                currentNeurons.forEach(currentNeuron => {
+                    nextNeurons.forEach(nextNeuron => {
+                        const rect1 = currentNeuron.getBoundingClientRect();
+                        const rect2 = nextNeuron.getBoundingClientRect();
+                        
+                        const containerRect = connectionsContainer.getBoundingClientRect();
+                        
+                        const x1 = rect1.left + rect1.width/2 - containerRect.left;
+                        const y1 = rect1.top + rect1.height/2 - containerRect.top;
+                        const x2 = rect2.left + rect2.width/2 - containerRect.left;
+                        const y2 = rect2.top + rect2.height/2 - containerRect.top;
+                        
+                        const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+                        const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+                        
+                        const connection = document.createElement('div');
+                        connection.className = 'nn-connection';
+                        connection.style.width = `${length}px`;
+                        connection.style.height = '2px';
+                        connection.style.left = `${x1}px`;
+                        connection.style.top = `${y1}px`;
+                        connection.style.transform = `rotate(${angle}deg)`;
+                        
+                        connectionsContainer.appendChild(connection);
+                    });
+                });
+            }
+            
+            // Mobile menu toggle
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const nav = document.querySelector('.nav');
+            
+            if (mobileMenuToggle && nav) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    nav.classList.toggle('active');
+                    
+                    // Prevent body scrolling when menu is open
+                    if (nav.classList.contains('active')) {
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+                
+                // Close menu when clicking on a link
+                const navLinks = document.querySelectorAll('.nav a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenuToggle.classList.remove('active');
+                        nav.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    });
+                });
+            }
+            
+            // Header scroll effect
+            const header = document.querySelector('.header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Table of Contents highlighting
+            const sections = document.querySelectorAll('.content-section');
+            const tocLinks = document.querySelectorAll('.toc-item a');
+            
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (pageYOffset >= sectionTop - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

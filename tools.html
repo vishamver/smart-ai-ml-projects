@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore free AI and machine learning tools, calculators, and resources from Smart AI & ML Projects">
+    <meta name="keywords" content="AI tools, ML calculators, free AI resources, machine learning utilities, data science tools">
+    <meta name="author" content="Vishamber">
+    <meta property="og:title" content="AI & ML Tools - Smart AI & ML Projects">
+    <meta property="og:description" content="Explore free AI and machine learning tools, calculators, and resources">
+    <meta property="og:image" content="assets/images/og-tools.jpg">
+    <meta property="og:url" content="https://smartaimlprojects.in/tools.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>AI & ML Tools - Smart AI & ML Projects</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo.png">
+
+<!-- Favicon (Standard Browsers) -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo.png">
+
+<!-- Web App Manifest (PWA Support) -->
+<link rel="manifest" href="manifest.json">
+
+<!-- Safari Pinned Tab (macOS) -->
+<link rel="mask-icon" href="assets/images/logo.svg" color="#0a84ff">
+
+<!-- Microsoft Tile Color (Windows) -->
+<meta name="msapplication-TileColor" content="#0a84ff">
+
+<!-- Mobile Browser Theme Color -->
+<meta name="theme-color" content="#0a84ff">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "AI & ML Tools",
+      "description": "Explore free AI and machine learning tools, calculators, and resources",
+      "url": "https://smartaimlprojects.in/tools.html",
+      "numberOfItems": 6,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "Model Performance Calculator"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "Neural Network Architect"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "Data Preprocessing Assistant"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "Hyperparameter Optimizer"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "AI Project Estimator"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "Dataset Generator"
+          }
+        }
+      ]
+    }
+    </script>
+    <style>
+        /* Tools Page Specific Styles */
+        .tools-hero {
+            background: linear-gradient(135deg, #5ee7df 0%, #b490ca 100%);
+            color: var(--text-color);
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .tools-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .tools-hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .tools-section {
+            padding: 80px 0;
+        }
+        
+        .tools-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+        
+        .tool-filter-btn {
+            padding: 10px 20px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .tool-filter-btn.active, .tool-filter-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .tool-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .tool-image {
+            height: 500;
+            width: auto;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .tool-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .tool-card:hover .tool-image img {
+            transform: scale(1.05);
+        }
+        
+        .tool-category {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .tool-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .tool-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .tool-title a {
+            color: var(--text-color);
+        }
+        
+        .tool-title a:hover {
+            color: var(--primary-color);
+        }
+        
+        .tool-description {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        
+        .tool-features {
+            margin-bottom: 20px;
+        }
+        
+        .tool-features li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .tool-features li::before {
+            content: '✓';
+            color: var(--success-color);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .tool-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .tool-type {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        .tool-link {
+            color: var(--primary-color);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .tool-link:hover {
+            gap: 8px;
+        }
+        
+        /* Interactive Tool Demo */
+        .interactive-tool {
+            background: var(--bg-light);
+            padding: 80px 0;
+        }
+        
+        .tool-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .tool-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+        
+        .tool-tab {
+            padding: 12px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .tool-tab.active {
+            border-bottom-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .tool-tab-content {
+            display: none;
+        }
+        
+        .tool-tab-content.active {
+            display: block;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            font-size: 16px;
+        }
+        
+        .calculate-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: var(--radius);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .calculate-btn:hover {
+            background: var(--primary-dark);
+        }
+        
+        .results-container {
+            margin-top: 30px;
+            padding: 20px;
+            background: var(--bg-light);
+            border-radius: var(--radius);
+            display: none;
+        }
+        
+        .results-container h3 {
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .result-label {
+            font-weight: 500;
+        }
+        
+        .result-value {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .resources-section {
+            padding: 80px 0;
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .resource-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+            .resource-icon img{
+    width: clamp(60px, 8vw, 120px);  /* Responsive: min 60px, fluid with viewport, max 120px */
+    height: auto;  /* keep aspect ratio */
+    
+    border-radius: 16px;  /* smooth rounded edges */
+    padding: 3px;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4); /* stylish background */
+    
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+}
+
+/* 🔥 Hover Effect */
+.resource-icon img:hover {
+    transform: scale(1.15) rotate(0deg); /* zoom + slight tilt */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(135deg, #84fab0, #8fd3f4); /* gradient shift */
+}
+
+        
+        .resource-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+        
+        .resource-description {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+            color: var(--text-color);
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        @media (max-width: 992px) {
+            .tools-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .tools-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tool-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tool-tab {
+                flex: 1;
+                text-align: center;
+                min-width: 120px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .tools-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tools-filters {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tool-filter-btn {
+                width: 200px;
+                text-align: center;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+            
+            .resource-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.png" 
+     alt="Smart AI & ML Projects" 
+     style="
+        width: 50px; 
+        height: 50px; 
+        border-radius: 50%; 
+        object-fit: cover; 
+        border: 3px solid #007BFF; 
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
+        transition: transform 0.3s, box-shadow 0.3s;"
+     onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.4)';" 
+     onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.3)';">
+                </a>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="blogs.html">Blog</a></li>
+                    <li><a href="case-studies.html">Case Studies</a></li>
+                    <li><a href="tools.html" class="active">Tools</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="post.html">Build Your First Neural Network</a></li>
+                    <li><a href="contact.html" class="btn btn-primary">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Tools Hero Section -->
+    <section class="tools-hero">
+        <div class="container">
+            <h1>AI & ML Tools & Resources</h1>
+            <p>Explore our collection of free tools, calculators, and resources to enhance your AI and machine learning projects</p>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section class="tools-section">
+        <div class="container">
+            <h2>Our Tools Collection</h2>
+            <p class="section-subtitle">Free utilities to help with your AI and machine learning projects</p>
+            
+            <!-- Filters -->
+            <div class="tools-filters">
+                <button class="tool-filter-btn active" data-filter="all">All Tools</button>
+                <button class="tool-filter-btn" data-filter="calculators">Calculators</button>
+                <button class="tool-filter-btn" data-filter="generators">Generators</button>
+                <button class="tool-filter-btn" data-filter="optimizers">Optimizers</button>
+                <button class="tool-filter-btn" data-filter="converters">Converters</button>
+            </div>
+            
+            <!-- Tools Grid -->
+            <div class="tools-grid">
+                <!-- Tool 1 -->
+                <article class="tool-card" data-category="calculators">
+                    <div class="tool-image">
+                        <img src="assets\images\Model Performance Calculator.png" alt="Model Performance Calculator" loading="lazy">
+                        <span class="tool-category">Calculator</span>
+                    </div>
+                    <div class="tool-content">
+                        <h3 class="tool-title"><a href="https://mlmodelperformance.base44.app/">Model Performance Calculator</a></h3>
+                        <p class="tool-description">Calculate key performance metrics for your machine learning models including accuracy, precision, recall, and F1-score.</p>
+                        
+                        <ul class="tool-features">
+                            <li>Multiple metric calculations</li>
+                            <li>Confusion matrix analysis</li>
+                            <li>Performance visualization</li>
+                            <li>Export results</li>
+                        </ul>
+                        
+                        <div class="tool-footer">
+                            <span class="tool-type">Web App</span>
+                            <a href="https://mlmodelperformance.base44.app/" class="tool-link">
+                                Use Tool
+                                <span>→</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Tool 2 -->
+                <article class="tool-card" data-category="generators">
+                    <div class="tool-image">
+                        <img src="assets\images\Neural Network Architect.png" alt="Neural Network Architect" loading="lazy">
+                        <span class="tool-category">Generator</span>
+                    </div>
+                    <div class="tool-content">
+                        <h3 class="tool-title"><a href="https://neuralnetworkarchitectures.base44.app/">Neural Network Architect</a></h3>
+                        <p class="tool-description">Design and visualize neural network architectures with custom layers, activation functions, and parameters.</p>
+                        
+                        <ul class="tool-features">
+                            <li>Drag-and-drop interface</li>
+                            <li>Multiple layer types</li>
+                            <li>Architecture visualization</li>
+                            <li>Code export (TensorFlow/PyTorch)</li>
+                        </ul>
+                        
+                        <div class="tool-footer">
+                            <span class="tool-type">Web App</span>
+                            <a href="https://neuralnetworkarchitectures.base44.app/" class="tool-link">
+                                Use Tool
+                                <span>→</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Tool 3 -->
+                <article class="tool-card" data-category="optimizers">
+                    <div class="tool-image">
+                        <img src="assets\images\Hyperparameter Optimizer.png" alt="Hyperparameter Optimizer" loading="lazy">
+                        <span class="tool-category">Optimizer</span>
+                    </div>
+                    <div class="tool-content">
+                        <h3 class="tool-title"><a href="https://optitune.base44.app/">Hyperparameter Optimizer</a></h3>
+                        <p class="tool-description">Find the optimal hyperparameters for your machine learning models using various optimization algorithms.</p>
+                        
+                        <ul class="tool-features">
+                            <li>Grid search & random search</li>
+                            <li>Bayesian optimization</li>
+                            <li>Visualization of results</li>
+                            <li>Export best parameters</li>
+                        </ul>
+                        
+                        <div class="tool-footer">
+                            <span class="tool-type">Web App</span>
+                            <a href="https://optitune.base44.app/" class="tool-link">
+                                Use Tool
+                                <span>→</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Tool 4 -->
+                <article class="tool-card" data-category="calculators">
+                    <div class="tool-image">
+                        <img src="assets\images\AI Project Estimator.png" alt="AI Project Estimator" loading="lazy">
+                        <span class="tool-category">Calculator</span>
+                    </div>
+                    <div class="tool-content">
+                        <h3 class="tool-title"><a href="https://aiprojectestimator.base44.app/">AI Project Estimator</a></h3>
+                        <p class="tool-description">Estimate the time, resources, and budget required for your AI projects based on complexity and requirements.</p>
+                        
+                        <ul class="tool-features">
+                            <li>Complexity assessment</li>
+                            <li>Resource estimation</li>
+                            <li>Timeline projection</li>
+                            <li>Cost calculation</li>
+                        </ul>
+                        
+                        <div class="tool-footer">
+                            <span class="tool-type">Web App</span>
+                            <a href="https://aiprojectestimator.base44.app/" class="tool-link">
+                                Use Tool
+                                <span>→</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Tool 5 -->
+                <article class="tool-card" data-category="converters">
+                    <div class="tool-image">
+                        <img src="assets\images\Data Preprocessing Assistant.png" alt="Data Preprocessing Assistant" loading="lazy">
+                        <span class="tool-category">Converter</span>
+                    </div>
+                    <div class="tool-content">
+                        <h3 class="tool-title"><a href="https://dataprepperpro.base44.app/">Data Preprocessing Assistant</a></h3>
+                        <p class="tool-description">Clean, transform, and preprocess your datasets with this interactive tool that generates ready-to-use code.</p>
+                        
+                        <ul class="tool-features">
+                            <li>Data cleaning operations</li>
+                            <li>Feature engineering</li>
+                            <li>Normalization & scaling</li>
+                            <li>Code generation</li>
+                        </ul>
+                        
+                        <div class="tool-footer">
+                            <span class="tool-type">Web App</span>
+                            <a href="https://dataprepperpro.base44.app/" class="tool-link">
+                                Use Tool
+                                <span>→</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Tool 6 -->
+                <article class="tool-card" data-category="generators">
+                    <div class="tool-image">
+                        <img src="assets\images\Synthetic Dataset Generator.png" alt="Dataset Generator" loading="lazy">
+                        <span class="tool-category">Generator</span>
+                    </div>
+                    <div class="tool-content">
+                        <h3 class="tool-title"><a href="https://synthdataforge.base44.app/">Synthetic Dataset Generator</a></h3>
+                        <p class="tool-description">Create custom synthetic datasets for testing and prototyping machine learning models with various distributions.</p>
+                        
+                        <ul class="tool-features">
+                            <li>Custom data distributions</li>
+                            <li>Multiple data types</li>
+                            <li>Noise injection options</li>
+                            <li>Multiple export formats</li>
+                        </ul>
+                        
+                        <div class="tool-footer">
+                            <span class="tool-type">Web App</span>
+                            <a href="https://synthdataforge.base44.app/" class="tool-link">
+                                Use Tool
+                                <span>→</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Tool Demo -->
+    <section class="interactive-tool">
+        <div class="container">
+            <h2>Model Performance Calculator</h2>
+            <p class="section-subtitle">Calculate key metrics for your classification models</p>
+            
+            <div class="tool-container">
+                <div class="tool-tabs">
+                    <div class="tool-tab active" data-tab="basic">Basic Calculator</div>
+                    <div class="tool-tab" data-tab="advanced">Advanced Analysis</div>
+                    <div class="tool-tab" data-tab="visualization">Visualization</div>
+                </div>
+                
+                <div class="tool-tab-content active" id="basic-tab">
+                    <div class="input-group">
+                        <label for="true-positive">True Positives (TP)</label>
+                        <input type="number" id="true-positive" placeholder="Enter true positives" min="0">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="true-negative">True Negatives (TN)</label>
+                        <input type="number" id="true-negative" placeholder="Enter true negatives" min="0">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="false-positive">False Positives (FP)</label>
+                        <input type="number" id="false-positive" placeholder="Enter false positives" min="0">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="false-negative">False Negatives (FN)</label>
+                        <input type="number" id="false-negative" placeholder="Enter false negatives" min="0">
+                    </div>
+                    
+                    <button class="calculate-btn" id="calculate-metrics">Calculate Metrics</button>
+                    
+                    <div class="results-container" id="basic-results">
+                        <h3>Performance Metrics</h3>
+                        
+                        <div class="result-item">
+                            <span class="result-label">Accuracy:</span>
+                            <span class="result-value" id="accuracy-result">0.00%</span>
+                        </div>
+                        
+                        <div class="result-item">
+                            <span class="result-label">Precision:</span>
+                            <span class="result-value" id="precision-result">0.00%</span>
+                        </div>
+                        
+                        <div class="result-item">
+                            <span class="result-label">Recall (Sensitivity):</span>
+                            <span class="result-value" id="recall-result">0.00%</span>
+                        </div>
+                        
+                        <div class="result-item">
+                            <span class="result-label">F1-Score:</span>
+                            <span class="result-value" id="f1-result">0.00%</span>
+                        </div>
+                        
+                        <div class="result-item">
+                            <span class="result-label">Specificity:</span>
+                            <span class="result-value" id="specificity-result">0.00%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tool-tab-content" id="advanced-tab">
+                    <p>Advanced analysis features coming soon! This will include ROC curve analysis, precision-recall curves, and more detailed model evaluation metrics.</p>
+                </div>
+                
+                <div class="tool-tab-content" id="visualization-tab">
+                    <p>Visualization features coming soon! This will include interactive confusion matrices, ROC curves, and other visual model evaluation tools.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="resources-section">
+        <div class="container">
+            <h2>Additional Resources</h2>
+            <p class="section-subtitle">Free resources to support your AI and machine learning journey</p>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <img src="assets\images\ML Cheatsheets.png" alt="Cheatsheets">
+                    </div>
+                    <h3 class="resource-title">ML Cheatsheets</h3>
+                    <p class="resource-description">Download our collection of machine learning cheatsheets covering algorithms, metrics, and best practices.</p>
+                    <a href="https://www.datacamp.com/cheat-sheet/machine-learning-cheat-sheet" class="btn btn-outline">Download</a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <img src="assets\images\Curated Datasets.png" alt="Datasets">
+                    </div>
+                    <h3 class="resource-title">Curated Datasets</h3>
+                    <p class="resource-description">Access our collection of curated datasets for practice and experimentation with various ML algorithms.</p>
+                    <a href="#" class="btn btn-outline">Explore Datasets</a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <img src="assets\images\Jupyter Notebooks.png" alt="Notebooks">
+                    </div>
+                    <h3 class="resource-title">Jupyter Notebooks</h3>
+                    <p class="resource-description">Browse our library of Jupyter notebooks with practical examples and implementations of ML algorithms.</p>
+                    <a href="#" class="btn btn-outline">View Notebooks</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Need Custom AI Solutions?</h2>
+            <p>Our team can develop custom tools and solutions tailored to your specific business needs and requirements.</p>
+            <a href="contact.html" class="btn btn-primary">Get In Touch</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="assets/images/logo.png" 
+     alt="Smart AI & ML Projects" 
+     style="
+        width: 65px; 
+        height: 65px; 
+        border-radius: 50%; 
+        object-fit: cover; 
+        border: 3px solid #007BFF; 
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
+        transition: transform 0.3s, box-shadow 0.3s;"
+     onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.4)';" 
+     onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.3)';">
+                    <p>Providing high-quality tutorials, case studies, and tools for AI and machine learning enthusiasts.</p>
+                    <div style="display:flex; justify-content:center; gap:15px; margin-top:20px;">
+
+  <!-- Twitter -->
+  <a href="https://x.com/Vishamb45787267" 
+     aria-label="Twitter"
+     style="display:inline-block; width:40px; height:40px; padding:8px; border-radius:50%; background:linear-gradient(135deg,#1DA1F2,#0d47a1); box-shadow:0 4px 15px rgba(0,0,0,0.3); transition:0.3s;"
+     onmouseover="this.style.transform='scale(1.2) rotate(10deg)'; this.style.filter='brightness(1.2)'" 
+     onmouseout="this.style.transform='scale(1) rotate(0deg)'; this.style.filter='brightness(1)'">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24" fill="white">
+      <path d="M459.4 151.7c.3 4.1 .3 8.3 .3 12.5 0 127-96.7 273.7-273.7 273.7-54.4 0-104.9-15.8-147.5-43.1 7.6.9 15.3 1.3 23 1.3 45.3 0 87-15.5 120-41.6-42.4-.9-78.2-28.8-90.5-67.3 5.9.9 11.9 1.5 18.2 1.5 8.8 0 17.3-1.2 25.4-3.3-44.3-8.9-77.6-48-77.6-94.9v-1.2c13 7.2 27.8 11.5 43.6 12.1-25.8-17.2-42.8-46.6-42.8-79.8 0-17.5 4.7-33.9 13-48 47 57.6 117.3 95.5 196.5 99.5-1.6-7-2.5-14.3-2.5-21.8 0-52.6 42.7-95.3 95.3-95.3 27.5 0 52.3 11.6 69.7 30.3 21.8-4.3 42.2-12.3 60.5-23.4-7.2 22.5-22.5 41.4-42.5 53.4 19.3-2.3 37.7-7.5 54.9-15.1-12.8 19.1-29.1 35.9-47.8 49.3z"/>
+    </svg>
+  </a>
+
+  <!-- LinkedIn -->
+  <a href="https://www.linkedin.com/in/vishamber-b57369254/" 
+     aria-label="LinkedIn"
+     style="display:inline-block; width:40px; height:40px; padding:8px; border-radius:50%; background:linear-gradient(135deg,#0077B5,#004971); box-shadow:0 4px 15px rgba(0,0,0,0.3); transition:0.3s;"
+     onmouseover="this.style.transform='scale(1.2) rotate(10deg)'; this.style.filter='brightness(1.2)'" 
+     onmouseout="this.style.transform='scale(1) rotate(0deg)'; this.style.filter='brightness(1)'">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24" fill="white">
+      <path d="M100.28 448H7.4V148.9h92.88zm-46.44-340a53.65 53.65 0 1 1 53.64-53.65 53.64 53.64 0 0 1-53.64 53.64zm394.28 340h-92.68V302.4c0-34.7-12.44-58.4-43.52-58.4-23.72 0-37.88 15.94-44.08 31.35-2.28 5.56-2.84 13.33-2.84 21.15V448h-92.68s1.24-241.7 0-266.1h92.68v37.7c12.3-19 34.38-46 83.68-46 61.12 0 107.04 39.92 107.04 125.74V448z"/>
+    </svg>
+  </a>
+
+  <!-- Instagram -->
+  <a href="https://www.instagram.com/digital_trader_vishamber/" 
+     aria-label="Instagram"
+     style="display:inline-block; width:40px; height:40px; padding:8px; border-radius:50%; background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af); box-shadow:0 4px 15px rgba(0,0,0,0.3); transition:0.3s;"
+     onmouseover="this.style.transform='scale(1.2) rotate(10deg)'; this.style.filter='brightness(1.2)'" 
+     onmouseout="this.style.transform='scale(1) rotate(0deg)'; this.style.filter='brightness(1)'">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+      <linearGradient id="instaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="50%" stop-color="#f58529"/>
+        <stop offset="100%" stop-color="#dd2a7b"/>
+        <stop offset="50%" stop-color="#8134af"/>
+      </linearGradient>
+      <rect x="32" y="32" width="448" height="448" rx="120" ry="120" fill="url(#instaGradient)"/>
+      <circle cx="256" cy="256" r="112" fill="white"/>
+      <circle cx="256" cy="256" r="80" fill="url(#instaGradient)"/>
+      <circle cx="396" cy="116" r="20" fill="white"/>
+    </svg>
+  </a>
+
+</div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="blogs.html">Blog</a></li>
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="tools.html">Tools</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="post.html">Build Your First Neural Network</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="contact.html">Get in Touch</a></li>
+                        <li><a href="mailto:smartaimlprojects.in@gmail.com">smartaimlprojects.in@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Smart AI & ML Projects. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const nav = document.querySelector('.nav');
+            
+            if (mobileMenuToggle && nav) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    nav.classList.toggle('active');
+                    
+                    // Prevent body scrolling when menu is open
+                    if (nav.classList.contains('active')) {
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+                
+                // Close menu when clicking on a link
+                const navLinks = document.querySelectorAll('.nav a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenuToggle.classList.remove('active');
+                        nav.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    });
+                });
+            }
+        });
+    </script>
+    <script>
+        // Tools filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.tool-filter-btn');
+            const toolCards = document.querySelectorAll('.tool-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Show/hide tool cards based on filter
+                    toolCards.forEach(toolCard => {
+                        if (filterValue === 'all') {
+                            toolCard.style.display = 'flex';
+                        } else {
+                            const toolCategory = toolCard.getAttribute('data-category');
+                            if (toolCategory === filterValue) {
+                                toolCard.style.display = 'flex';
+                            } else {
+                                toolCard.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // Tool tabs functionality
+            const toolTabs = document.querySelectorAll('.tool-tab');
+            const tabContents = document.querySelectorAll('.tool-tab-content');
+            
+            toolTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs and contents
+                    toolTabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    this.classList.add('active');
+                    document.getElementById(`${tabId}-tab`).classList.add('active');
+                });
+            });
+            
+            // Model performance calculator functionality
+            const calculateBtn = document.getElementById('calculate-metrics');
+            if (calculateBtn) {
+                calculateBtn.addEventListener('click', function() {
+                    const tp = parseInt(document.getElementById('true-positive').value) || 0;
+                    const tn = parseInt(document.getElementById('true-negative').value) || 0;
+                    const fp = parseInt(document.getElementById('false-positive').value) || 0;
+                    const fn = parseInt(document.getElementById('false-negative').value) || 0;
+                    
+                    const total = tp + tn + fp + fn;
+                    
+                    if (total === 0) {
+                        alert('Please enter values for at least some metrics');
+                        return;
+                    }
+                    
+                    // Calculate metrics
+                    const accuracy = (tp + tn) / total;
+                    const precision = tp / (tp + fp) || 0;
+                    const recall = tp / (tp + fn) || 0;
+                    const f1 = (2 * precision * recall) / (precision + recall) || 0;
+                    const specificity = tn / (tn + fp) || 0;
+                    
+                    // Update results
+                    document.getElementById('accuracy-result').textContent = (accuracy * 100).toFixed(2) + '%';
+                    document.getElementById('precision-result').textContent = (precision * 100).toFixed(2) + '%';
+                    document.getElementById('recall-result').textContent = (recall * 100).toFixed(2) + '%';
+                    document.getElementById('f1-result').textContent = (f1 * 100).toFixed(2) + '%';
+                    document.getElementById('specificity-result').textContent = (specificity * 100).toFixed(2) + '%';
+                    
+                    // Show results
+                    document.getElementById('basic-results').style.display = 'block';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

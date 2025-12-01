@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://smartaimlprojects.in/sitemap.xml
+
+# Directories (block backend & unnecessary resources)
+Disallow: /admin/
+Disallow: /includes/
+Disallow: /cgi-bin/
+
+# Sensitive or unnecessary pages
+Disallow: /privacy.html
+Disallow: /terms.html
+
+# Files
+Disallow: /README.md
+Disallow: /LICENSE
+Disallow: /config.php

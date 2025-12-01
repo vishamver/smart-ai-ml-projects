@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Building Your First Neural Network with TensorFlow | Smart AI & ML Projects</title>
+    <meta name="description" content="Step-by-step guide to building your first neural network using TensorFlow and Keras. Learn neural network fundamentals with practical Python code examples.">
+    <meta name="keywords" content="neural network tutorial, TensorFlow beginner, Keras tutorial, deep learning, machine learning, Python AI, build neural network">
+    <meta name="author" content="Vishamber">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Building Your First Neural Network with TensorFlow",
+      "description": "Step-by-step guide to building your first neural network using TensorFlow and Keras. Learn neural network fundamentals with practical Python code examples.",
+      "author": { "@type": "Person", "name": "Vishamber" },
+      "datePublished": "2023-06-15",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Smart AI & ML Projects",
+        "logo": { "@type": "ImageObject", "url": "https://smartaimlprojects.in/assets/images/logo.png" }
+      },
+      "image": { "@type": "ImageObject", "url": "https://smartaimlprojects.in/assets/images/neural-network-tensorflow.jpg" },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://smartaimlprojects.in/first-neural-network-tensorflow.html" }
+    }
+    </script>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Building Your First Neural Network with TensorFlow">
+    <meta property="og:description" content="Step-by-step guide to building your first neural network using TensorFlow and Keras. Learn neural network fundamentals with practical Python code examples.">
+    <meta property="og:image" content="https://smartaimlprojects.in/assets/images/neural-network-tensorflow.jpg">
+    <meta property="og:url" content="https://smartaimlprojects.in/first-neural-network-tensorflow.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Smart AI & ML Projects">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Building Your First Neural Network with TensorFlow">
+    <meta name="twitter:description" content="Step-by-step guide to building your first neural network using TensorFlow and Keras. Learn neural network fundamentals with practical Python code examples.">
+    <meta name="twitter:image" content="https://smartaimlprojects.in/assets/images/neural-network-tensorflow.jpg">
+    <meta name="twitter:creator" content="@Vishamb45787267">
+
+    <!-- Icons / PWA -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="mask-icon" href="assets/images/logo.svg" color="#0a84ff">
+    <meta name="msapplication-TileColor" content="#0a84ff">
+    <meta name="theme-color" content="#0a84ff">
+
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+/* (Your full original stylesheet preserved, with the few CSS classes used by new JS preserved) */
+:root {
+    --primary: #0066ff;
+    --primary-dark: #0052cc;
+    --secondary: #6c63ff;
+    --accent: #ff6b6b;
+    --tensorflow: #ff6f00;
+    --success: #27ae60;
+    --dark: #1a1a2e;
+    --darker: #16213e;
+    --light: #f8f9fa;
+    --lighter: #ffffff;
+    --gray: #6b7280;
+    --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+    --tf-gradient: linear-gradient(135deg, #ff6f00, #ff8f00);
+    --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    --radius: 12px;
+    --transition: all 0.3s ease;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { overflow-x: hidden; }
+body { font-family: 'Inter', sans-serif; color: var(--dark); line-height: 1.6; background-color: var(--lighter); }
+h1,h2,h3,h4,h5 { font-family: 'Poppins', sans-serif; font-weight:700; line-height:1.2; margin-bottom:1rem; }
+
+.container { width:100%; max-width:1200px; margin:0 auto; padding:0 20px; overflow-x:hidden; }
+
+/* Header Navigation - FIXED */
+.header { position: fixed; top:0; left:0; width:100%; background-color: rgba(255,255,255,0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.1); z-index:1000; padding:15px 0; transition: var(--transition); }
+.header.scrolled { padding:10px 0; }
+.header .container { display:flex; justify-content:space-between; align-items:center; }
+
+.logo a { display:flex; align-items:center; text-decoration:none; }
+.logo img { width:50px; height:50px; border-radius:50%; object-fit:cover; border:3px solid var(--primary); box-shadow:0 4px 15px rgba(0,0,0,0.3); transition:var(--transition); }
+.logo img:hover { transform:scale(1.1); box-shadow:0 8px 25px rgba(0,0,0,0.4); }
+
+.nav { display:flex; }
+.nav ul { display:flex; list-style:none; gap:25px; align-items:center; }
+.nav a { text-decoration:none; color:var(--dark); font-weight:500; position:relative; padding:8px 0; transition:var(--transition); white-space:nowrap; }
+.nav a:not(.btn):after { content:''; position:absolute; bottom:0; left:0; width:0; height:2px; background-color:var(--primary); transition:var(--transition); }
+.nav a:not(.btn):hover:after { width:100%; }
+.nav a.active { color:var(--primary); }
+
+.mobile-menu-toggle { display:none; flex-direction:column; justify-content:space-between; width:30px; height:21px; background:transparent; border:none; cursor:pointer; position:relative; z-index:1001; }
+.mobile-menu-toggle span { height:3px; width:100%; background-color:var(--dark); border-radius:3px; transition:var(--transition); transform-origin:center; }
+.mobile-menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(6px,6px); }
+.mobile-menu-toggle.active span:nth-child(2) { opacity:0; }
+.mobile-menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(6px,-6px); }
+
+/* Buttons */
+.btn { display:inline-block; padding:12px 24px; border-radius:50px; text-decoration:none; font-weight:600; text-align:center; transition:var(--transition); cursor:pointer; border:none; font-size:16px; }
+.btn-primary { background: var(--tf-gradient); color:white; box-shadow:0 4px 15px rgba(255,111,0,0.3); }
+.btn-primary:hover { transform:translateY(-3px); box-shadow:0 8px 20px rgba(255,111,0,0.4); }
+.btn-secondary { background-color: transparent; color: var(--tensorflow); border: 2px solid var(--tensorflow); }
+.btn-secondary:hover { background-color: var(--tensorflow); color: white; }
+
+/* Tutorial Hero */
+.tutorial-hero { padding:160px 0 80px; background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); position:relative; overflow:hidden; }
+.tutorial-hero::before { content:''; position:absolute; top:-100px; right:-100px; width:300px; height:300px; background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="80" stroke="%23ff6f00" stroke-width="2" fill="none" stroke-dasharray="5,5"/></svg>') repeat; opacity:0.1; z-index:0; }
+.tutorial-badge { display:inline-block; background: var(--tf-gradient); color:white; padding:8px 16px; border-radius:30px; font-size:14px; font-weight:500; margin-bottom:20px; box-shadow:var(--shadow-sm); }
+.tutorial-title { font-size:3rem; margin-bottom:20px; color:var(--darker); }
+.tutorial-meta { display:flex; gap:20px; margin-bottom:30px; color:var(--gray); font-size:0.9rem; }
+.meta-item { display:flex; align-items:center; gap:8px; }
+
+/* Prerequisites Section */
+.prerequisites { padding:60px 0; background:white; }
+.prereq-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap:30px; }
+.prereq-card { background:white; border-radius:var(--radius); padding:30px; box-shadow:var(--shadow-md); text-align:center; transition:var(--transition); }
+.prereq-card:hover { transform:translateY(-5px); box-shadow:var(--shadow-lg); }
+.prereq-icon { width:70px; height:70px; border-radius:50%; background: linear-gradient(135deg,#fff3e0 0%,#ffe0b2 100%); display:flex; align-items:center; justify-content:center; margin:0 auto 20px; color:var(--tensorflow); font-size:28px; }
+.prereq-title { font-size:1.3rem; margin-bottom:15px; color:var(--darker); }
+.prereq-desc { color:var(--gray); }
+
+/* Content Layout */
+.content-wrapper { display:flex; gap:40px; padding:60px 0; }
+.main-content { flex:1; max-width:800px; }
+.sidebar { width:300px; }
+
+/* Table of Contents */
+.toc { position:sticky; top:100px; background:white; border-radius:var(--radius); padding:25px; box-shadow:var(--shadow-md); }
+.toc-title { font-size:1.2rem; margin-bottom:20px; padding-bottom:10px; border-bottom:2px solid var(--tensorflow); }
+.toc-list { list-style:none; }
+.toc-item { margin-bottom:12px; padding-left:15px; position:relative; }
+.toc-item:before { content:''; position:absolute; left:0; top:50%; transform:translateY(-50%); width:6px; height:6px; background:var(--tensorflow); border-radius:50%; }
+.toc-item a { color:var(--dark); text-decoration:none; transition:var(--transition); }
+.toc-item a:hover { color:var(--tensorflow); }
+.toc-item a.active { color: var(--tf-gradient); font-weight:700; }
+
+/* Content Sections */
+.content-section { margin-bottom:50px; }
+.content-section h2 { font-size:2rem; color:var(--darker); padding-bottom:10px; border-bottom:2px solid #eaeaea; margin-bottom:25px; }
+.content-section h3 { font-size:1.5rem; color:var(--dark); margin:30px 0 15px; }
+.content-section p { margin-bottom:20px; line-height:1.8; }
+.content-section ul, .content-section ol { margin-bottom:20px; padding-left:30px; }
+.content-section li { margin-bottom:10px; line-height:1.7; }
+
+/* Code Blocks */
+.code-block { background: var(--darker); color: white; border-radius: var(--radius); padding: 25px; margin: 25px 0; overflow-x: auto; font-family: 'Courier New', monospace; line-height: 1.6; position: relative; }
+.code-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.1); }
+.code-language { color:var(--tensorflow); font-weight:600; }
+.copy-btn { background: rgba(255,255,255,0.1); color: white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer; font-size:0.8rem; transition:var(--transition); }
+.copy-btn:hover { background: rgba(255,255,255,0.2); }
+.copy-btn.copied { background: rgba(40,167,69,0.95); color: #fff; }
+
+/* Info Boxes */
+.info-box { background:#fff3e0; border-left:4px solid var(--tensorflow); padding:20px; border-radius:4px; margin:25px 0; }
+.warning-box { background:#ffebee; border-left:4px solid #f44336; padding:20px; border-radius:4px; margin:25px 0; }
+.success-box { background:#e8f5e9; border-left:4px solid #4caf50; padding:20px; border-radius:4px; margin:25px 0; }
+
+/* Neural Network Visualization */
+.nn-visualization { background:white; border-radius:var(--radius); padding:30px; box-shadow:var(--shadow-md); margin:40px 0; text-align:center; position:relative; }
+.nn-diagram { width:100%; height:250px; position:relative; margin:30px 0; overflow:hidden; }
+.nn-layer { position:absolute; height:100%; width:80px; display:flex; flex-direction:column; justify-content:space-around; align-items:center; }
+.nn-layer-1 { left:10%; }
+.nn-layer-2 { left:45%; }
+.nn-layer-3 { left:80%; }
+.nn-neuron { width:30px; height:30px; border-radius:50%; background:var(--tf-gradient); box-shadow:var(--shadow-sm); display:flex; align-items:center; justify-content:center; }
+
+/* SVG overlay will occupy full nn-diagram for crisp lines */
+.nn-svg-overlay { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; }
+
+/* Step-by-Step Guide */
+.steps-section { counter-reset: step-counter; }
+.step-item { display:flex; margin-bottom:40px; padding-left:80px; position:relative; }
+.step-item:before { counter-increment: step-counter; content:counter(step-counter); position:absolute; left:0; top:0; width:60px; height:60px; background:var(--tf-gradient); color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5rem; font-weight:700; }
+.step-content h4 { font-size:1.4rem; margin-bottom:10px; color:var(--darker); }
+
+/* Next Steps */
+.next-steps { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-radius:var(--radius); padding:40px; margin:40px 0; }
+.next-steps-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap:30px; }
+.next-step-card { background:white; border-radius:var(--radius); padding:25px; box-shadow:var(--shadow-sm); transition:var(--transition); }
+.next-step-card:hover { transform:translateY(-5px); box-shadow:var(--shadow-md); }
+.next-step-icon { width:50px; height:50px; border-radius:50%; background:var(--tf-gradient); display:flex; align-items:center; justify-content:center; margin-bottom:15px; color:white; font-size:20px; }
+.next-step-title { font-size:1.2rem; margin-bottom:10px; color:var(--darker); }
+
+/* Footer */
+.footer { background:var(--darker); color:white; padding:80px 0 30px; }
+.footer-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap:40px; margin-bottom:50px; }
+.footer-about img { width:65px; height:65px; border-radius:50%; object-fit:cover; border:3px solid var(--primary); box-shadow:0 4px 15px rgba(0,0,0,0.3); transition:var(--transition); margin-bottom:20px; }
+.footer-about img:hover { transform:scale(1.1); box-shadow:0 8px 25px rgba(0,0,0,0.4); }
+.footer-about p { margin-bottom:25px; opacity:0.8; }
+.social-links { display:flex; gap:15px; }
+.social-links a { display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; background:rgba(255,255,255,0.1); color:white; text-decoration:none; transition:var(--transition); }
+.social-links a:hover { background:var(--gradient); transform:translateY(-3px); }
+.footer-links h3 { font-size:1.2rem; margin-bottom:20px; position:relative; padding-bottom:10px; }
+.footer-links h3::after { content:''; position:absolute; bottom:0; left:0; width:40px; height:2px; background:var(--gradient); }
+.footer-links ul { list-style:none; }
+.footer-links li { margin-bottom:12px; }
+.footer-links a { color: rgba(255,255,255,0.8); text-decoration:none; transition:var(--transition); }
+.footer-links a:hover { color:white; padding-left:5px; }
+.footer-bottom { text-align:center; padding-top:30px; border-top:1px solid rgba(255,255,255,0.1); font-size:0.9rem; opacity:0.7; }
+
+/* Responsive Design */
+@media (max-width:992px) {
+    .content-wrapper { flex-direction:column; }
+    .sidebar { width:100%; order:-1; margin-bottom:40px; }
+    .toc { position:relative; top:0; }
+}
+@media (max-width:768px) {
+    .tutorial-title { font-size:2.3rem; }
+    .nav { position:fixed; top:0; right:-100%; width:75%; max-width:320px; height:100vh; background:white; flex-direction:column; padding:80px 30px 30px; transition:var(--transition); box-shadow:-5px 0 30px rgba(0,0,0,0.1); z-index:999; overflow-y:auto; }
+    .nav.active { right:0; }
+    .nav ul { flex-direction:column; gap:20px; width:100%; }
+    .nav a { display:block; padding:12px 0; font-size:1.1rem; border-bottom:1px solid #f0f0f0; }
+    .nav a:not(.btn):after { display:none; }
+    .nav a.btn { margin-top:20px; text-align:center; border:none; }
+    .mobile-menu-toggle { display:flex; }
+    .prereq-grid { grid-template-columns:1fr; }
+    .step-item { padding-left:0; padding-top:70px; }
+    .step-item:before { top:0; left:0; }
+}
+@media (max-width:576px) {
+    .tutorial-title { font-size:2rem; }
+    .tutorial-meta { flex-direction:column; gap:10px; }
+    .btn { padding:10px 20px; }
+    .next-steps-grid { grid-template-columns:1fr; }
+    .nav { width:100%; }
+    .footer-grid { grid-template-columns:1fr; text-align:center; }
+    .footer-links ul { padding-left:0; }
+}
+
+/* Neural diagram responsive scaling */
+.nn-diagram { overflow-x:auto; padding-bottom:20px; }
+.nn-layer { transform-origin:left center; }
+@media (min-width:769px) and (max-width:1200px) { .nn-layer { transform:scale(0.85); } }
+@media (max-width:480px) { .nn-layer { transform:scale(0.60); } }
+
+/* Utilities */
+.container img { max-width:100%; height:auto; }
+
+/* prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+}
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.png" alt="Smart AI & ML Projects">
+                </a>
+            </div>
+
+            <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-controls="main-navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
+            <nav class="nav" id="main-navigation" role="navigation" aria-label="Primary">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="blogs.html">Blog</a></li>
+                    <li><a href="case-studies.html">Case Studies</a></li>
+                    <li><a href="tools.html">Tools</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="post.html">Build Your First Neural Network</a></li>
+                    <li><a href="contact.html" class="btn btn-primary">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Tutorial Hero -->
+    <section class="tutorial-hero" aria-labelledby="page-title">
+        <div class="container">
+            <span class="tutorial-badge">Hands-On Tutorial</span>
+            <h1 id="page-title" class="tutorial-title">Building Your First Neural Network with TensorFlow</h1>
+            <div class="tutorial-meta">
+                <div class="meta-item"><i class="far fa-calendar"></i><span>June 15, 2023</span></div>
+                <div class="meta-item"><i class="far fa-clock"></i><span>20 min read</span></div>
+                <div class="meta-item"><i class="far fa-user"></i><span>Vishamber</span></div>
+            </div>
+            <p>Step-by-step guide to building your first neural network using TensorFlow and Keras. Learn neural network fundamentals with practical Python code examples.</p>
+        </div>
+    </section>
+
+    <!-- Prerequisites -->
+    <section class="prerequisites">
+        <div class="container">
+            <div class="prereq-grid">
+                <div class="prereq-card">
+                    <div class="prereq-icon"><i class="fab fa-python"></i></div>
+                    <h3 class="prereq-title">Python Basics</h3>
+                    <p class="prereq-desc">Basic understanding of Python programming and data structures</p>
+                </div>
+                <div class="prereq-card">
+                    <div class="prereq-icon"><i class="fas fa-laptop-code"></i></div>
+                    <h3 class="prereq-title">Code Editor</h3>
+                    <p class="prereq-desc">Jupyter Notebook, VS Code, or any Python IDE</p>
+                </div>
+                <div class="prereq-card">
+                    <div class="prereq-icon"><i class="fas fa-cogs"></i></div>
+                    <h3 class="prereq-title">TensorFlow</h3>
+                    <p class="prereq-desc">TensorFlow 2.x installed in your environment</p>
+                </div>
+                <div class="prereq-card">
+                    <div class="prereq-icon"><i class="fas fa-brain"></i></div>
+                    <h3 class="prereq-title">ML Concepts</h3>
+                    <p class="prereq-desc">Basic understanding of machine learning concepts</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main content + sidebar -->
+    <div class="container content-wrapper">
+        <main class="main-content" role="main">
+            <section class="content-section" id="understanding">
+                <h2>Understanding Neural Networks</h2>
+                <p>Neural networks are computing systems inspired by the human brain. They consist of interconnected nodes (neurons) organized in layers that process information and learn patterns from data.</p>
+                
+                <div class="nn-visualization" aria-hidden="false">
+                    <h3>Basic Neural Network Structure</h3>
+                    <div class="nn-diagram" aria-hidden="true">
+                        <!-- Layer elements (visual neurons) -->
+                        <div class="nn-layer nn-layer-1" data-layer-index="0">
+                            <div class="nn-neuron" data-neuron-index="0"></div>
+                            <div class="nn-neuron" data-neuron-index="1"></div>
+                            <div class="nn-neuron" data-neuron-index="2"></div>
+                        </div>
+
+                        <div class="nn-layer nn-layer-2" data-layer-index="1">
+                            <div class="nn-neuron" data-neuron-index="0"></div>
+                            <div class="nn-neuron" data-neuron-index="1"></div>
+                            <div class="nn-neuron" data-neuron-index="2"></div>
+                            <div class="nn-neuron" data-neuron-index="3"></div>
+                        </div>
+
+                        <div class="nn-layer nn-layer-3" data-layer-index="2">
+                            <div class="nn-neuron" data-neuron-index="0"></div>
+                            <div class="nn-neuron" data-neuron-index="1"></div>
+                        </div>
+
+                        <!-- SVG overlay for connections -->
+                        <svg class="nn-svg-overlay" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+                    </div>
+                    <p>Input Layer → Hidden Layers → Output Layer</p>
+                </div>
+
+                <div class="info-box">
+                    <p><strong>Key Concept:</strong> Neural networks learn by adjusting the weights between neurons based on the error of their predictions, a process called backpropagation.</p>
+                </div>
+            </section>
+
+            <section class="content-section" id="implementation">
+                <h2>Step-by-Step Implementation</h2>
+                <div class="steps-section">
+                    <!-- Step 1 -->
+                    <div class="step-item">
+                        <div class="step-content">
+                            <h4>Step 1: Install and Import TensorFlow</h4>
+                            <p>First, ensure you have TensorFlow installed. Then import the necessary libraries.</p>
+                            <div class="code-block" aria-label="Code example: Install and import TensorFlow">
+                                <div class="code-header">
+                                    <span class="code-language">Python</span>
+                                    <button class="copy-btn" type="button">Copy Code</button>
+                                </div>
+                                <pre><code># Install TensorFlow (if not already installed)
+# pip install tensorflow
+
+import tensorflow as tf
+from tensorflow import keras
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Check TensorFlow version
+print("TensorFlow version:", tf.__version__)</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-item">
+                        <div class="step-content">
+                            <h4>Step 2: Load and Prepare the Data</h4>
+                            <p>We'll use the MNIST dataset - a collection of 70,000 handwritten digits.</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-language">Python</span>
+                                    <button class="copy-btn" type="button">Copy Code</button>
+                                </div>
+                                <pre><code># Load MNIST dataset
+(x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
+
+# Normalize pixel values (0-255) to (0-1)
+x_train = x_train / 255.0
+x_test = x_test / 255.0
+
+# Reshape data for the neural network (flatten 28x28 images to 784 pixels)
+x_train = x_train.reshape(-1, 28*28)
+x_test = x_test.reshape(-1, 28*28)
+
+# Print dataset shapes
+print("Training data shape:", x_train.shape)
+print("Test data shape:", x_test.shape)</code></pre>
+                            </div>
+                            <div class="info-box">
+                                <p><strong>Data Insight:</strong> The MNIST dataset contains 60,000 training images and 10,000 test images, each 28x28 pixels representing digits 0-9.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-item">
+                        <div class="step-content">
+                            <h4>Step 3: Build the Neural Network Model</h4>
+                            <p>Create a sequential model with input, hidden, and output layers.</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-language">Python</span>
+                                    <button class="copy-btn" type="button">Copy Code</button>
+                                </div>
+                                <pre><code># Create a sequential model
+model = keras.Sequential([
+    # Input layer with 784 neurons (28x28 pixels)
+    keras.layers.Dense(128, activation='relu', input_shape=(784,)),
+    # Hidden layer with 64 neurons
+    keras.layers.Dense(64, activation='relu'),
+    # Output layer with 10 neurons (for digits 0-9)
+    keras.layers.Dense(10, activation='softmax')
+])
+
+# Display model architecture
+model.summary()</code></pre>
+                            </div>
+                            <div class="info-box">
+                                <p><strong>Architecture Details:</strong> Our model has 784 input neurons, 128 neurons in the first hidden layer, 64 in the second hidden layer, and 10 output neurons (one for each digit).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="step-item">
+                        <div class="step-content">
+                            <h4>Step 4: Compile the Model</h4>
+                            <p>Configure the model for training by specifying the optimizer, loss function, and metrics.</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-language">Python</span>
+                                    <button class="copy-btn" type="button">Copy Code</button>
+                                </div>
+                                <pre><code># Compile the model
+model.compile(
+    optimizer='adam',
+    loss='sparse_categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+print("Model compiled successfully!")</code></pre>
+                            </div>
+                            <div class="info-box">
+                                <p><strong>Compilation Explanation:</strong> Adam optimizer for efficient learning, sparse categorical crossentropy for multi-class classification, and accuracy as the metric.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="step-item">
+                        <div class="step-content">
+                            <h4>Step 5: Train the Model</h4>
+                            <p>Train the neural network on our training data.</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-language">Python</span>
+                                    <button class="copy-btn" type="button">Copy Code</button>
+                                </div>
+                                <pre><code># Train the model
+history = model.fit(
+    x_train,
+    y_train,
+    epochs=10,
+    batch_size=32,
+    validation_split=0.2,
+    verbose=1
+)
+
+print("Training completed!")</code></pre>
+                            </div>
+                            <div class="warning-box">
+                                <p><strong>Training Tip:</strong> Start with fewer epochs (5-10) to ensure your model is working correctly before training longer.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 6 -->
+                    <div class="step-item">
+                        <div class="step-content">
+                            <h4>Step 6: Evaluate Model Performance</h4>
+                            <p>Test the trained model on unseen data to evaluate its performance.</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-language">Python</span>
+                                    <button class="copy-btn" type="button">Copy Code</button>
+                                </div>
+                                <pre><code># Evaluate on test data
+test_loss, test_acc = model.evaluate(x_test, y_test, verbose=0)
+
+print(f'Test accuracy: {test_acc:.4f}')
+print(f'Test loss: {test_loss:.4f}')</code></pre>
+                            </div>
+                            <div class="success-box">
+                                <p><strong>Expected Results:</strong> With this architecture, you may achieve ≈97-98% accuracy on the test set after 10 epochs.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 7 -->
+                    <div class="step-item">
+                        <div class="step-content">
+                            <h4>Step 7: Make Predictions</h4>
+                            <p>Use the trained model to make predictions on new data.</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-language">Python</span>
+                                    <button class="copy-btn" type="button">Copy Code</button>
+                                </div>
+                                <pre><code># Make predictions on test data
+predictions = model.predict(x_test)
+
+# Predicted class for the first test sample
+predicted_class = np.argmax(predictions[0])
+actual_class = y_test[0]
+
+print(f'Predicted: {predicted_class}, Actual: {actual_class}')
+
+# Display confidence scores
+print("Confidence scores:", predictions[0])</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="complete-code">
+                <h2>Complete Code Example</h2>
+                <p>Here's the complete code in one block for easy copying and execution:</p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-language">Python - Complete Code</span>
+                        <button class="copy-btn" type="button">Copy Full Code</button>
+                    </div>
+                    <pre><code># Complete Neural Network with TensorFlow
+import tensorflow as tf
+from tensorflow import keras
+import numpy as np
+
+# 1. Load and prepare data
+(x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
+x_train = x_train / 255.0
+x_test = x_test / 255.0
+x_train = x_train.reshape(-1, 28*28)
+x_test = x_test.reshape(-1, 28*28)
+
+# 2. Build model
+model = keras.Sequential([
+    keras.layers.Dense(128, activation='relu', input_shape=(784,)),
+    keras.layers.Dense(64, activation='relu'),
+    keras.layers.Dense(10, activation='softmax')
+])
+
+# 3. Compile model
+model.compile(
+    optimizer='adam',
+    loss='sparse_categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+# 4. Train model
+history = model.fit(x_train, y_train, epochs=10, batch_size=32, validation_split=0.2)
+
+# 5. Evaluate model
+test_loss, test_acc = model.evaluate(x_test, y_test)
+print(f'Final Test Accuracy: {test_acc:.4f}')</code></pre>
+                </div>
+            </section>
+
+            <section class="content-section" id="next-steps">
+                <h2>Next Steps in Your Neural Network Journey</h2>
+                <div class="next-steps">
+                    <div class="next-steps-grid">
+                        <div class="next-step-card">
+                            <div class="next-step-icon"><i class="fas fa-layer-group"></i></div>
+                            <h4 class="next-step-title">Advanced Architectures</h4>
+                            <p>Explore CNNs for image data and RNNs for sequential data</p>
+                        </div>
+                        <div class="next-step-card">
+                            <div class="next-step-icon"><i class="fas fa-tune"></i></div>
+                            <h4 class="next-step-title">Hyperparameter Tuning</h4>
+                            <p>Learn to optimize learning rates, batch sizes, and layer configs</p>
+                        </div>
+                        <div class="next-step-card">
+                            <div class="next-step-icon"><i class="fas fa-chart-line"></i></div>
+                            <h4 class="next-step-title">Model Deployment</h4>
+                            <p>Deploy your trained models to production environments</p>
+                        </div>
+                        <div class="next-step-card">
+                            <div class="next-step-icon"><i class="fas fa-project-diagram"></i></div>
+                            <h4 class="next-step-title">Real Projects</h4>
+                            <p>Apply your skills to real-world datasets and problems</p>
+                        </div>
+                    </div>
+                </div>
+                <p>Congratulations! You've successfully built and trained your first neural network. This foundation will serve you well as you explore more complex architectures and applications of deep learning.</p>
+            </section>
+        </main>
+
+        <aside class="sidebar" role="complementary">
+            <div class="toc" aria-label="Table of contents">
+                <h3 class="toc-title">Table of Contents</h3>
+                <ul class="toc-list">
+                    <li class="toc-item"><a href="#understanding">Understanding Neural Networks</a></li>
+                    <li class="toc-item"><a href="#implementation">Step-by-Step Implementation</a></li>
+                    <li class="toc-item"><a href="#complete-code">Complete Code Example</a></li>
+                    <li class="toc-item"><a href="#next-steps">Next Steps</a></li>
+                </ul>
+
+                <div style="margin-top:30px;">
+                    <a href="introduction-neural-networks.html" class="btn btn-primary" style="display:block; text-align:center; margin-bottom:15px;">Neural Networks Basics</a>
+                    <a href="tools.html" class="btn btn-secondary" style="display:block; text-align:center;">AI Development Tools</a>
+                </div>
+            </div>
+
+            <div class="toc" style="margin-top:30px;">
+                <h3 class="toc-title">Download Resources</h3>
+                <ul class="toc-list">
+                    <li class="toc-item"><a href="#"><i class="fas fa-file-code"></i> Complete Code File</a></li>
+                    <li class="toc-item"><a href="#"><i class="fas fa-book"></i> TensorFlow Cheat Sheet</a></li>
+                    <li class="toc-item"><a href="#"><i class="fas fa-video"></i> Video Tutorial</a></li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="assets/images/logo.png" alt="Smart AI & ML Projects">
+                    <p>Providing high-quality tutorials, case studies, and tools for AI and machine learning enthusiasts.</p>
+
+                    <div style="display:flex; justify-content:center; gap:15px; margin-top:20px;">
+                      <a href="https://x.com/Vishamb45787267" aria-label="Twitter" target="_blank" rel="noopener noreferrer" style="display:inline-block; width:40px; height:40px; padding:8px; border-radius:50%; background:linear-gradient(135deg,#1DA1F2,#0d47a1); box-shadow:0 4px 15px rgba(0,0,0,0.3); transition:0.3s;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24" fill="white"><path d="M459.4 151.7c.3 4.1 .3 8.3 .3 12.5 0 127-96.7 273.7-273.7 273.7-54.4 0-104.9-15.8-147.5-43.1 7.6.9 15.3 1.3 23 1.3 45.3 0 87-15.5 120-41.6-42.4-.9-78.2-28.8-90.5-67.3 5.9.9 11.9 1.5 18.2 1.5 8.8 0 17.3-1.2 25.4-3.3-44.3-8.9-77.6-48-77.6-94.9v-1.2c13 7.2 27.8 11.5 43.6 12.1-25.8-17.2-42.8-46.6-42.8-79.8 0-17.5 4.7-33.9 13-48 47 57.6 117.3 95.5 196.5 99.5-1.6-7-2.5-14.3-2.5-21.8 0-52.6 42.7-95.3 95.3-95.3 27.5 0 52.3 11.6 69.7 30.3 21.8-4.3 42.2-12.3 60.5-23.4-7.2 22.5-22.5 41.4-42.5 53.4 19.3-2.3 37.7-7.5 54.9-15.1-12.8 19.1-29.1 35.9-47.8 49.3z"/></svg>
+                      </a>
+
+                      <a href="https://www.linkedin.com/in/vishamber-b57369254/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" style="display:inline-block; width:40px; height:40px; padding:8px; border-radius:50%; background:linear-gradient(135deg,#0077B5,#004971); box-shadow:0 4px 15px rgba(0,0,0,0.3); transition:0.3s;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24" fill="white"><path d="M100.28 448H7.4V148.9h92.88zm-46.44-340a53.65 53.65 0 1 1 53.64-53.65 53.64 53.64 0 0 1-53.64 53.64zm394.28 340h-92.68V302.4c0-34.7-12.44-58.4-43.52-58.4-23.72 0-37.88 15.94-44.08 31.35-2.28 5.56-2.84 13.33-2.84 21.15V448h-92.68s1.24-241.7 0-266.1h92.68v37.7c12.3-19 34.38-46 83.68-46 61.12 0 107.04 39.92 107.04 125.74V448z"/></svg>
+                      </a>
+
+                      <a href="https://www.instagram.com/digital_trader_vishamber/" aria-label="Instagram" target="_blank" rel="noopener noreferrer" style="display:inline-block; width:40px; height:40px; padding:8px; border-radius:50%; background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af); box-shadow:0 4px 15px rgba(0,0,0,0.3); transition:0.3s;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24"><linearGradient id="instaGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="50%" stop-color="#f58529"/><stop offset="100%" stop-color="#dd2a7b"/><stop offset="50%" stop-color="#8134af"/></linearGradient><rect x="32" y="32" width="448" height="448" rx="120" ry="120" fill="url(#instaGradient)"/><circle cx="256" cy="256" r="112" fill="white"/><circle cx="256" cy="256" r="80" fill="url(#instaGradient)"/><circle cx="396" cy="116" r="20" fill="white"/></svg>
+                      </a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="blogs.html">Blog</a></li>
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="tools.html">Tools</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="post.html">Build Your First Neural Network</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="contact.html">Get in Touch</a></li>
+                        <li><a href="mailto:smartaimlprojects.in@gmail.com">smartaimlprojects.in@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Smart AI & ML Projects. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Improved interactive script: SVG connections, TOC highlight, accessible mobile nav, clipboard -->
+    <script>
+    (function(){
+        // Utility
+        function debounce(fn, wait = 100) {
+            let t;
+            return function(...args) {
+                clearTimeout(t);
+                t = setTimeout(() => fn.apply(this, args), wait);
+            };
+        }
+
+        // --- SVG connections: draw lines between neuron centers ---
+        function drawSvgConnections() {
+            const diagram = document.querySelector('.nn-diagram');
+            const svg = diagram && diagram.querySelector('.nn-svg-overlay');
+            if (!diagram || !svg) return;
+
+            // Clear existing routes
+            while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+            const containerRect = diagram.getBoundingClientRect();
+            // find layers in DOM order
+            const layers = Array.from(diagram.querySelectorAll('.nn-layer'));
+
+            // compute center coordinates for each neuron
+            const layerNeuronCenters = layers.map(layer => {
+                const neurons = Array.from(layer.querySelectorAll('.nn-neuron'));
+                return neurons.map(neuron => {
+                    const r = neuron.getBoundingClientRect();
+                    return {
+                        x: r.left + r.width / 2 - containerRect.left,
+                        y: r.top + r.height / 2 - containerRect.top
+                    };
+                });
+            });
+
+            // set svg viewBox and size to match container
+            const width = Math.max(1, containerRect.width);
+            const height = Math.max(1, containerRect.height);
+            svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+            svg.setAttribute('width', `${width}`);
+            svg.setAttribute('height', `${height}`);
+            svg.style.width = '100%';
+            svg.style.height = '100%';
+            svg.innerHTML = '';
+
+            // draw lines between neurons of adjacent layers
+            for (let i = 0; i < layerNeuronCenters.length - 1; i++) {
+                const srcNeurons = layerNeuronCenters[i];
+                const dstNeurons = layerNeuronCenters[i+1];
+
+                srcNeurons.forEach(src => {
+                    dstNeurons.forEach(dst => {
+                        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                        line.setAttribute('x1', src.x);
+                        line.setAttribute('y1', src.y);
+                        line.setAttribute('x2', dst.x);
+                        line.setAttribute('y2', dst.y);
+                        line.setAttribute('stroke', 'rgba(255,111,0,0.22)');
+                        line.setAttribute('stroke-width', '2');
+                        line.setAttribute('stroke-linecap', 'round');
+                        svg.appendChild(line);
+                    });
+                });
+            }
+        }
+
+        // init draw with debounced resize
+        const debouncedDraw = debounce(drawSvgConnections, 80);
+        window.addEventListener('resize', debouncedDraw);
+        window.addEventListener('orientationchange', debouncedDraw);
+
+        // ResizeObserver to detect internal changes
+        try {
+            const diagram = document.querySelector('.nn-diagram');
+            if (diagram && window.ResizeObserver) {
+                const ro = new ResizeObserver(debouncedDraw);
+                ro.observe(diagram);
+                diagram.querySelectorAll('.nn-layer').forEach(l => ro.observe(l));
+            }
+        } catch (e) { /* ignore if not supported */ }
+
+        // draw after load and small timeouts (fonts/images)
+        window.addEventListener('load', function() {
+            setTimeout(drawSvgConnections, 60);
+            setTimeout(drawSvgConnections, 220);
+        });
+
+        // also draw on DOMContentLoaded in case load already fired
+        document.addEventListener('DOMContentLoaded', function(){ setTimeout(drawSvgConnections, 60); });
+
+        // MutationObserver (light) to catch layout changes
+        try {
+            const diagram = document.querySelector('.nn-diagram');
+            if (diagram && window.MutationObserver) {
+                const mo = new MutationObserver(debouncedDraw);
+                mo.observe(diagram, { childList: true, subtree: true, attributes: true });
+            }
+        } catch (e) {}
+
+        // --- Mobile menu accessibility & behavior ---
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        const nav = document.querySelector('.nav');
+
+        if (mobileToggle && nav) {
+            mobileToggle.addEventListener('click', function() {
+                const expanded = nav.classList.toggle('active');
+                mobileToggle.classList.toggle('active');
+                mobileToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+                document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : 'auto';
+            });
+
+            // close on link click
+            nav.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', () => {
+                    mobileToggle.classList.remove('active');
+                    nav.classList.remove('active');
+                    mobileToggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+
+            // close when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!nav.classList.contains('active')) return;
+                if (!nav.contains(e.target) && !mobileToggle.contains(e.target)) {
+                    mobileToggle.classList.remove('active');
+                    nav.classList.remove('active');
+                    mobileToggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // close with Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && nav.classList.contains('active')) {
+                    mobileToggle.classList.remove('active');
+                    nav.classList.remove('active');
+                    mobileToggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = 'auto';
+                    mobileToggle.focus();
+                }
+            });
+        }
+
+        // --- TOC highlighting (works because sections have ids) ---
+        const tocLinks = document.querySelectorAll('.toc-item a');
+        const contentSections = Array.from(document.querySelectorAll('.content-section'));
+
+        function updateTOC() {
+            const threshold = 140; // px from top
+            let currentId = null;
+            contentSections.forEach(section => {
+                const rectTop = section.getBoundingClientRect().top;
+                if (rectTop <= threshold) currentId = section.id;
+            });
+
+            // if near bottom, highlight the last section
+            if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 3) {
+                currentId = contentSections[contentSections.length - 1]?.id || currentId;
+            }
+
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                const href = link.getAttribute('href') || '';
+                if (href.startsWith('#') && href.substring(1) === currentId) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        document.addEventListener('scroll', debounce(updateTOC, 50));
+        document.addEventListener('DOMContentLoaded', updateTOC);
+        window.addEventListener('load', updateTOC);
+
+        // Smooth-scroll for TOC links (native fallback friendly)
+        tocLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (!href || !href.startsWith('#')) return;
+                e.preventDefault();
+                const target = document.getElementById(href.substring(1));
+                if (target) {
+                    window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // --- Copy-to-clipboard for code blocks (robust) ---
+        const copyButtons = document.querySelectorAll('.copy-btn');
+        copyButtons.forEach(btn => {
+            btn.addEventListener('click', async function() {
+                const codeBlock = this.closest('.code-block');
+                if (!codeBlock) return;
+                const codeElem = codeBlock.querySelector('code');
+                const text = codeElem ? codeElem.innerText.trim() : '';
+                try {
+                    await navigator.clipboard.writeText(text);
+                    const prev = this.textContent;
+                    this.textContent = 'Copied!';
+                    this.classList.add('copied');
+                    setTimeout(() => { this.textContent = prev; this.classList.remove('copied'); }, 1400);
+                } catch (err) {
+                    // fallback
+                    const ta = document.createElement('textarea');
+                    ta.value = text;
+                    document.body.appendChild(ta);
+                    ta.select();
+                    try { document.execCommand('copy'); }
+                    catch (e) { alert('Copy failed. Please copy manually.'); }
+                    document.body.removeChild(ta);
+                }
+            });
+        });
+
+        // initial draws
+        document.addEventListener('DOMContentLoaded', () => { setTimeout(drawSvgConnections, 60); updateTOC(); });
+    })();
+    </script>
+</body>
+</html>

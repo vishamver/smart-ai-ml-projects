@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore real-world AI and machine learning case studies from Smart AI & ML Projects">
+    <meta name="keywords" content="AI case studies, machine learning projects, AI success stories, ML implementation examples">
+    <meta name="author" content="Vishamber">
+    <meta property="og:title" content="AI & ML Case Studies - Smart AI & ML Projects">
+    <meta property="og:description" content="Explore real-world AI and machine learning case studies">
+    <meta property="og:image" content="assets/images/og-case-studies.jpg">
+    <meta property="og:url" content="https://smartaimlprojects.in/case-studies.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>AI & ML Case Studies - Smart AI & ML Projects</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo.png">
+
+<!-- Favicon (Standard Browsers) -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo.png">
+
+<!-- Web App Manifest (PWA Support) -->
+<link rel="manifest" href="manifest.json">
+
+<!-- Safari Pinned Tab (macOS) -->
+<link rel="mask-icon" href="assets/images/logo.svg" color="#0a84ff">
+
+<!-- Microsoft Tile Color (Windows) -->
+<meta name="msapplication-TileColor" content="#0a84ff">
+
+<!-- Mobile Browser Theme Color -->
+<meta name="theme-color" content="#0a84ff">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "AI & ML Case Studies",
+      "description": "Explore real-world AI and machine learning case studies",
+      "url": "https://smartaimlprojects.in/case-studies.html",
+      "numberOfItems": 4,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "Article",
+            "name": "Healthcare Diagnostics AI Solution"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "Article",
+            "name": "E-commerce Recommendation Engine"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "Article",
+            "name": "Financial Fraud Detection System"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "Article",
+            "name": "Manufacturing Predictive Maintenance"
+          }
+        }
+      ]
+    }
+    </script>
+    <style>
+        /* Case Studies Page Specific Styles */
+        .case-studies-hero {
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .case-studies-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .case-studies-hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .case-studies-section {
+            padding: 80px 0;
+        }
+        
+        .case-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .case-study-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+/* Hover effect */
+.case-study-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Add subtle glow border */
+.case-study-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(135deg, #2563eb, #9333ea, #f59e0b);
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.35s ease-in-out;
+}
+
+/* Glow on hover */
+.case-study-card:hover::before {
+    opacity: 1;
+}
+        
+        .case-image {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .case-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .case-study-card:hover .case-image img {
+            transform: scale(1.05);
+        }
+        
+        .case-category {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .case-content {
+            padding: 25px;
+        }
+        
+        .case-title {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    line-height: 1.4;
+    position: relative;
+    z-index: 1; /* ensures no overlap blocks it */
+}
+
+.case-title a {
+    color: var(--text-color);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    display: inline-block; /* ensures link area works properly */
+}
+
+.case-title a:hover {
+    color: var(--primary-color);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+        
+        .case-excerpt {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .case-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: var(--bg-light);
+            border-radius: var(--radius);
+        }
+        
+        .metric-item {
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+        
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+        
+        .case-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .case-client {
+            font-weight: 500;
+            color: var(--text-color);
+        }
+        
+.case-link {
+    color: var(--primary-color);
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Underline animation */
+.case-link::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width 0.3s ease-in-out;
+}
+
+/* Hover state */
+.case-link:hover {
+    color: var(--primary-color);
+    gap: 10px;
+}
+
+.case-link:hover::after {
+    width: 100%;
+}
+
+
+        .testimonials-section {
+            background: var(--bg-light);
+            padding: 80px 0;
+        }
+        
+        .testimonials-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--primary-color);
+            opacity: 0.2;
+            line-height: 1;
+        }
+        
+        .testimonial-content {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: var(--text-color);
+        }
+
+.testimonial-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 30px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-7px) scale(1.02);
+    box-shadow: 1px 15px 35px rgba(0, 0, 0, 0.18);
+    background: linear-gradient(145deg, #ffffff, #f9fafb);
+}
+
+}
+        /* Add a subtle border glow on hover */
+.testimonial-card:hover::before {
+    color: var(--primary-color);
+    opacity: 0.7;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+/* Smooth avatar hover animation */
+.testimonial-avatar img {
+    transition: transform 0.3s ease;
+}
+/* Animate author name color on hover */
+.testimonial-card:hover .testimonial-info h4 {
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .testimonial-info h4 {
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+        
+        .testimonial-info p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        .process-section {
+            padding: 80px 0;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .process-step {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+        
+/* Process Step Card */
+.process-step {
+  text-align: center;
+  padding: 28px 24px;
+  background: linear-gradient(180deg, #ffffff, #f9fafb);
+  border-radius: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.35s ease, 
+              box-shadow 0.35s ease, 
+              border-color 0.35s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* Hover interaction */
+.process-step:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border-color: rgba(37, 99, 235, 0.2);
+}
+
+/* Subtle animated glow on hover */
+.process-step::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.08), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.process-step:hover::after {
+  opacity: 1;
+}
+
+/* Step Icon Container */
+.step-icon {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #ffffff, #f3f4f6);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.05),
+              0 6px 12px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 1;
+  transition: transform 0.35s ease;
+}
+
+/* Glow border ring */
+.step-icon::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    #2563eb,
+    #7c4dff,
+    #00d2ff,
+    #ff6a88,
+    #2563eb
+  );
+  z-index: -1;
+  opacity: 0.7;
+  animation: spin 6s linear infinite;
+}
+
+/* Icon image inside */
+.step-icon img {
+  width: 95px;
+  height: 95px;
+ border-radius: 50%;
+  object-fit: contain;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  z-index: 2;
+}
+
+.process-step:hover .step-icon img {
+  transform: scale(1.15);
+  filter: brightness(1.2) contrast(1.1);
+}
+
+/* Titles & text */
+.process-step h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.process-step p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #485368a8;
+  margin: 0;
+}
+
+/* Animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+        
+        .step-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+        
+        .step-description {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        @media (max-width: 992px) {
+            .case-studies-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .case-studies-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .case-metrics {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .case-studies-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .case-studies-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .case-filters {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                width: 200px;
+                text-align: center;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.png" 
+     alt="Smart AI & ML Projects" 
+     style="
+        width: 50px; 
+        height: 50px; 
+        border-radius: 50%; 
+        object-fit: cover; 
+        border: 3px solid #007BFF; 
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
+        transition: transform 0.3s, box-shadow 0.3s;"
+     onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.4)';" 
+     onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.3)';">
+                </a>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="blogs.html">Blog</a></li>
+                    <li><a href="case-studies.html" class="active">Case Studies</a></li>
+                    <li><a href="tools.html">Tools</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="post.html">Build Your First Neural Network</a></li>
+                    <li><a href="contact.html" class="btn btn-primary">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Case Studies Hero Section -->
+    <section class="case-studies-hero">
+        <div class="container">
+            <h1>AI & ML Case Studies</h1>
+            <p>Explore our real-world implementations of artificial intelligence and machine learning solutions across various industries</p>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section class="case-studies-section">
+        <div class="container">
+            <h2>Our Success Stories</h2>
+            <p class="section-subtitle">Discover how we've helped businesses transform their operations with AI and ML solutions</p>
+            
+            <!-- Filters -->
+            <div class="case-filters">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="healthcare">Healthcare</button>
+                <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
+                <button class="filter-btn" data-filter="finance">Finance</button>
+                <button class="filter-btn" data-filter="manufacturing">Manufacturing</button>
+            </div>
+            
+            <!-- Case Studies Grid -->
+            <div class="case-studies-grid">
+                <!-- Case Study 1 -->
+                <article class="case-study-card" data-category="healthcare">
+                    <div class="case-image">
+                        <img src="assets\images\AI-Powered Medical Diagnostics System.png" alt="Healthcare Diagnostics AI Solution" loading="lazy">
+                        <span class="case-category">Healthcare</span>
+                    </div>
+                    <div class="case-content">
+                        <h3 class="case-title"><a href="healthcareaidiagnostics.html">AI-Powered Medical Diagnostics System</a></h3>
+                        <p class="case-excerpt">Developed a deep learning system that assists radiologists in detecting abnormalities in medical images with 95% accuracy.</p>
+                        
+                        <div class="case-metrics">
+                            <div class="metric-item">
+                                <div class="metric-value">95%</div>
+                                <div class="metric-label">Accuracy</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">40%</div>
+                                <div class="metric-label">Faster Diagnosis</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">$2.5M</div>
+                                <div class="metric-label">Cost Savings</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">12</div>
+                                <div class="metric-label">Months</div>
+                            </div>
+                        </div>
+                        
+                        <div class="case-footer">
+                            <span class="case-client">MedTech Solutions Inc.</span>
+                            <a href="healthcareaidiagnostics.html" class="case-link">
+                                View Case Study
+                                <span>→</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Case Study 2 -->
+                <article class="case-study-card" data-category="ecommerce">
+                    <div class="case-image">
+                        <img src="assets\images\Personalized Product Recommendation Engine.png" alt="E-commerce Recommendation Engine" loading="lazy">
+                        <span class="case-category">E-commerce</span>
+                    </div>
+                    <div class="case-content">
+                        <h3 class="case-title"><a href="ecommercerecommendationengine.html">Personalized Product Recommendation Engine</a></h3>
+                        <p class="case-excerpt">Built a machine learning system that delivers personalized product recommendations, increasing conversion rates and average order value.</p>
+                        
+                        <div class="case-metrics">
+                            <div class="metric-item">
+                                <div class="metric-value">35%</div>
+                                <div class="metric-label">Conversion Increase</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">28%</div>
+                                <div class="metric-label">Higher AOV</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">4.2x</div>
+                                <div class="metric-label">ROI</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">9</div>
+                                <div class="metric-label">Months</div>
+                            </div>
+                        </div>
+                        
+                        <div class="case-footer">
+                            <span class="case-client">StyleCart Retail</span>
+                            <a href="ecommercerecommendationengine.html" class="case-link">
+                                View Case Study
+                                <span>→</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Case Study 3 -->
+                <article class="case-study-card" data-category="finance">
+                    <div class="case-image">
+                        <img src="assets\images\Real-time Fraud Detection System.png" alt="Financial Fraud Detection System" loading="lazy">
+                        <span class="case-category">Finance</span>
+                    </div>
+                    <div class="case-content">
+                        <h3 class="case-title"><a href="financialfrauddetection.html">Real-time Fraud Detection System</a></h3>
+                        <p class="case-excerpt">Implemented an AI-powered fraud detection system that identifies suspicious transactions in real-time with 99.8% accuracy.</p>
+                        
+                        <div class="case-metrics">
+                            <div class="metric-item">
+                                <div class="metric-value">99.8%</div>
+                                <div class="metric-label">Accuracy</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">60%</div>
+                                <div class="metric-label">False Positives Reduced</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">$5M+</div>
+                                <div class="metric-label">Fraud Prevented</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">10</div>
+                                <div class="metric-label">Months</div>
+                            </div>
+                        </div>
+                        
+                        <div class="case-footer">
+                            <span class="case-client">Global Financial Services</span>
+                            <a href="financialfrauddetection.html" class="case-link">
+                                View Case Study
+                                <span>→</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Case Study 4 -->
+                <article class="case-study-card" data-category="manufacturing">
+                    <div class="case-image">
+                        <img src="assets\images\Predictive Maintenance for Manufacturing.png" alt="Manufacturing Predictive Maintenance" loading="lazy">
+                        <span class="case-category">Manufacturing</span>
+                    </div>
+                    <div class="case-content">
+                        <h3 class="case-title"><a href="manufacturingpredictivemaintenance.html">Predictive Maintenance for Manufacturing</a></h3>
+                        <p class="case-excerpt">Developed an IoT and ML-based predictive maintenance system that reduced equipment downtime by 45% and maintenance costs by 30%.</p>
+                        
+                        <div class="case-metrics">
+                            <div class="metric-item">
+                                <div class="metric-value">45%</div>
+                                <div class="metric-label">Downtime Reduced</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">30%</div>
+                                <div class="metric-label">Maintenance Savings</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">3.5x</div>
+                                <div class="metric-label">ROI</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">14</div>
+                                <div class="metric-label">Months</div>
+                            </div>
+                        </div>
+                        
+                        <div class="case-footer">
+                            <span class="case-client">Precision Manufacturing Co.</span>
+                            <a href="manufacturingpredictivemaintenance.html" class="case-link">
+                                View Case Study
+                                <span>→</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2>What Our Clients Say</h2>
+            <p class="section-subtitle">Hear from businesses that have transformed their operations with our AI solutions</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-content">The AI diagnostic system developed by Smart AI & ML Projects has revolutionized our radiology department. We're now detecting conditions earlier and with greater accuracy than ever before.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="assets\images\Dr. Gary Wietecha, M.D..jpg" alt="Dr. Gary Wietecha, M.D.">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>Dr. Gary Wietecha, M.D.</h4>
+                            <p>Chief Medical Officer, MedTech Solutions</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-content">The recommendation engine has been a game-changer for our e-commerce business. We've seen a significant increase in conversion rates and customer satisfaction since implementation.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="assets\images\Michael Chen.jpg" alt="Michael Chen">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>Michael Chen</h4>
+                            <p>CEO, StyleCart Retail</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-content">The fraud detection system has saved us millions by identifying suspicious transactions in real-time. The accuracy and efficiency far exceed our previous solutions.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="assets\images\Robert Williams.jpg" alt="Robert Williams">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>Robert Williams</h4>
+                            <p>Security Director, Global Financial Services</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <h2>Our Case Study Process</h2>
+            <p class="section-subtitle">How we approach each client project to ensure success</p>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-icon">
+                        <img src="assets\images\Discovery & Analysis.png" alt="Discovery">
+                    </div>
+                    <h3 class="step-title">Discovery & Analysis</h3>
+                    <p class="step-description">We begin by thoroughly understanding your business challenges, goals, and data landscape to identify the best AI approach.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-icon">
+                        <img src="assets\images\Solution Design.png" alt="Planning">
+                    </div>
+                    <h3 class="step-title">Solution Design</h3>
+                    <p class="step-description">Our team designs a customized AI solution architecture tailored to your specific needs and technical environment.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-icon">
+                        <img src="assets\images\Development & Training.png" alt="Development">
+                    </div>
+                    <h3 class="step-title">Development & Training</h3>
+                    <p class="step-description">We develop and train models using your data, following best practices for machine learning engineering and validation.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-icon">
+                        <img src="assets\images\Deployment & Integration.png" alt="Deployment">
+                    </div>
+                    <h3 class="step-title">Deployment & Integration</h3>
+                    <p class="step-description">We seamlessly integrate the AI solution into your existing workflows and systems, ensuring minimal disruption.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Start Your AI Journey?</h2>
+            <p>Contact us today to discuss how our AI and ML solutions can transform your business operations and drive growth.</p>
+            <a href="contact.html" class="btn btn-primary">Get Started Today</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="assets/images/logo.png" 
+     alt="Smart AI & ML Projects" 
+     style="
+        width: 65px; 
+        height: 65px; 
+        border-radius: 50%; 
+        object-fit: cover; 
+        border: 3px solid #007BFF; 
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
+        transition: transform 0.3s, box-shadow 0.3s;"
+     onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.4)';" 
+     onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.3)';">
+                    <p>Providing high-quality tutorials, case studies, and tools for AI and machine learning enthusiasts.</p>
+                    <div style="display:flex; justify-content:center; gap:15px; margin-top:20px;">
+
+  <!-- Twitter -->
+  <a href="https://x.com/Vishamb45787267" 
+     aria-label="Twitter"
+     style="display:inline-block; width:40px; height:40px; padding:8px; border-radius:50%; background:linear-gradient(135deg,#1DA1F2,#0d47a1); box-shadow:0 4px 15px rgba(0,0,0,0.3); transition:0.3s;"
+     onmouseover="this.style.transform='scale(1.2) rotate(10deg)'; this.style.filter='brightness(1.2)'" 
+     onmouseout="this.style.transform='scale(1) rotate(0deg)'; this.style.filter='brightness(1)'">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24" fill="white">
+      <path d="M459.4 151.7c.3 4.1 .3 8.3 .3 12.5 0 127-96.7 273.7-273.7 273.7-54.4 0-104.9-15.8-147.5-43.1 7.6.9 15.3 1.3 23 1.3 45.3 0 87-15.5 120-41.6-42.4-.9-78.2-28.8-90.5-67.3 5.9.9 11.9 1.5 18.2 1.5 8.8 0 17.3-1.2 25.4-3.3-44.3-8.9-77.6-48-77.6-94.9v-1.2c13 7.2 27.8 11.5 43.6 12.1-25.8-17.2-42.8-46.6-42.8-79.8 0-17.5 4.7-33.9 13-48 47 57.6 117.3 95.5 196.5 99.5-1.6-7-2.5-14.3-2.5-21.8 0-52.6 42.7-95.3 95.3-95.3 27.5 0 52.3 11.6 69.7 30.3 21.8-4.3 42.2-12.3 60.5-23.4-7.2 22.5-22.5 41.4-42.5 53.4 19.3-2.3 37.7-7.5 54.9-15.1-12.8 19.1-29.1 35.9-47.8 49.3z"/>
+    </svg>
+  </a>
+
+  <!-- LinkedIn -->
+  <a href="https://www.linkedin.com/in/vishamber-b57369254/" 
+     aria-label="LinkedIn"
+     style="display:inline-block; width:40px; height:40px; padding:8px; border-radius:50%; background:linear-gradient(135deg,#0077B5,#004971); box-shadow:0 4px 15px rgba(0,0,0,0.3); transition:0.3s;"
+     onmouseover="this.style.transform='scale(1.2) rotate(10deg)'; this.style.filter='brightness(1.2)'" 
+     onmouseout="this.style.transform='scale(1) rotate(0deg)'; this.style.filter='brightness(1)'">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24" fill="white">
+      <path d="M100.28 448H7.4V148.9h92.88zm-46.44-340a53.65 53.65 0 1 1 53.64-53.65 53.64 53.64 0 0 1-53.64 53.64zm394.28 340h-92.68V302.4c0-34.7-12.44-58.4-43.52-58.4-23.72 0-37.88 15.94-44.08 31.35-2.28 5.56-2.84 13.33-2.84 21.15V448h-92.68s1.24-241.7 0-266.1h92.68v37.7c12.3-19 34.38-46 83.68-46 61.12 0 107.04 39.92 107.04 125.74V448z"/>
+    </svg>
+  </a>
+
+  <!-- Instagram -->
+  <a href="https://www.instagram.com/digital_trader_vishamber/" 
+     aria-label="Instagram"
+     style="display:inline-block; width:40px; height:40px; padding:8px; border-radius:50%; background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af); box-shadow:0 4px 15px rgba(0,0,0,0.3); transition:0.3s;"
+     onmouseover="this.style.transform='scale(1.2) rotate(10deg)'; this.style.filter='brightness(1.2)'" 
+     onmouseout="this.style.transform='scale(1) rotate(0deg)'; this.style.filter='brightness(1)'">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+      <linearGradient id="instaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="50%" stop-color="#f58529"/>
+        <stop offset="100%" stop-color="#dd2a7b"/>
+        <stop offset="50%" stop-color="#8134af"/>
+      </linearGradient>
+      <rect x="32" y="32" width="448" height="448" rx="120" ry="120" fill="url(#instaGradient)"/>
+      <circle cx="256" cy="256" r="112" fill="white"/>
+      <circle cx="256" cy="256" r="80" fill="url(#instaGradient)"/>
+      <circle cx="396" cy="116" r="20" fill="white"/>
+    </svg>
+  </a>
+
+</div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="blogs.html">Blog</a></li>
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="tools.html">Tools</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="post.html">Build Your First Neural Network</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="contact.html">Get in Touch</a></li>
+                        <li><a href="mailto:smartaimlprojects.in@gmail.com">smartaimlprojects.in@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Smart AI & ML Projects. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const nav = document.querySelector('.nav');
+            
+            if (mobileMenuToggle && nav) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    nav.classList.toggle('active');
+                    
+                    // Prevent body scrolling when menu is open
+                    if (nav.classList.contains('active')) {
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+                
+                // Close menu when clicking on a link
+                const navLinks = document.querySelectorAll('.nav a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenuToggle.classList.remove('active');
+                        nav.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    });
+                });
+            }
+        });
+    </script>
+    <script>
+        // Case study filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const caseStudies = document.querySelectorAll('.case-study-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Show/hide case studies based on filter
+                    caseStudies.forEach(caseStudy => {
+                        if (filterValue === 'all') {
+                            caseStudy.style.display = 'block';
+                        } else {
+                            const caseCategory = caseStudy.getAttribute('data-category');
+                            if (caseCategory === filterValue) {
+                                caseStudy.style.display = 'block';
+                            } else {
+                                caseStudy.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

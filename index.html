@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Smart AI & ML Projects - Tutorials, case studies, and tools for artificial intelligence and machine learning enthusiasts">
+    <meta name="keywords" content="AI projects, machine learning projects, AI tutorials, machine learning case studies, AI tools, ML code examples">
+    <meta name="author" content="Vishamber">
+    <meta property="og:title" content="Smart AI & ML Projects">
+    <meta property="og:description" content="Learn AI and ML through tutorials, case studies, and tools">
+    <meta property="og:image" content="assets/images/og-image.jpg">
+    <meta property="og:url" content="https://smartaimlprojects.in">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Smart AI & ML Projects - Learn Artificial Intelligence and Machine Learning</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Apple Touch Icon (iOS Home Screen) -->
+<!-- For modern browsers that support SVG favicons -->
+<link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+
+<!-- Fallback for older browsers -->
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+<link rel="icon" type="image/png" href="assets/images/favicon-32x32.png">
+<link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+<!-- Web App Manifest (PWA Support) -->
+<link rel="manifest" href="manifest.json">
+
+<!-- Safari Pinned Tab (macOS) -->
+<link rel="mask-icon" href="assets/images/logo.svg" color="#0a84ff">
+
+<!-- Microsoft Tile Color (Windows) -->
+<meta name="msapplication-TileColor" content="#0a84ff">
+
+<!-- Mobile Browser Theme Color -->
+<meta name="theme-color" content="#0a84ff">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Smart AI & ML Projects",
+      "url": "https://smartaimlprojects.in",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://smartaimlprojects.in/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Header Navigation -->
+      <!-- Header Navigation -->
+  <header class="header">
+    <div class="container">
+      <!-- Logo -->
+      <div class="logo">
+        <a href="index.html">
+          <img src="assets\images\logo.webp" alt="Smart AI & ML Projects"
+          style="
+            width: 50px; 
+            height: 50px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            border: 3px solid #007BFF; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
+            transition: transform 0.3s, box-shadow 0.3s;"
+          onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.4)';" 
+          onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.3)';">
+        </a>
+      </div>
+
+     <!-- Mobile Toggle Button -->
+      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Navigation -->
+      <nav class="nav">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="blogs.html">Blog</a></li>
+          <li><a href="case-studies.html">Case Studies</a></li>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="post.html">Build Your First Neural Network</a></li>
+          <li><a href="contact.html" class="btn btn-primary">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Advance Your AI & Machine Learning Skills</h1>
+                <p>Practical tutorials, real-world case studies, and powerful tools to help you master artificial intelligence and machine learning.</p>
+                <div class="hero-cta">
+                    <a href="blogs.html" class="btn btn-primary">Explore Tutorials</a>
+                    <a href="tools.html" class="btn btn-secondary">Discover Tools</a>
+                </div>
+            </div>
+            <!-- Hero block with inline CSS (responsive + overlay + subtle interactive effect) -->
+<div
+  style="max-width:1200px; margin:32px auto; padding:0 16px; box-sizing:border-box;"
+>
+  <div
+    id="hero"
+    style="
+      position:relative;
+      overflow:hidden;
+      border-radius:16px;
+      box-shadow:0 18px 40px rgba(2,6,23,0.25);
+      width:100%;
+      max-width:1200px;
+      height:auto;
+      cursor:default;
+      transition:transform 0.45s cubic-bezier(.2,.9,.2,1);
+      transform-origin:center;
+    "
+    onmouseover="this.style.transform='scale(1.02)';"
+    onmouseout="this.style.transform='scale(1)';"
+    onmousemove="(function(e){const r=this.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-0.5;const y=(e.clientY-r.top)/r.height-0.5; this.style.transform='scale(1.02) translate('+(x*6)+'px,'+(y*6)+'px)';})(event);"
+  >
+    <!-- background image (responsive) -->
+    <img
+      src="assets/images/aiml.png"
+      alt="AI and Machine Learning"
+      style="
+        display:block;
+        width:100%;
+        height:clamp(260px, 40vw, 480px);   /* responsive height */
+        object-fit:cover;
+        object-position:center;
+        vertical-align:middle;
+        border-radius:16px;
+      "
+      width="1200"
+      height="480"
+    />
+
+    <!-- dark gradient overlay for readability -->
+    <div
+      style="
+        position:absolute;
+        inset:0;
+        pointer-events:none;
+        background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.55) 100%);
+        mix-blend-mode: multiply;
+      "
+    ></div>
+
+    <!-- content overlay -->
+    <div
+      style="
+        position:absolute;
+        left:24px;
+        bottom:24px;
+        right:24px;
+        color:#fff;
+        z-index:5;
+        pointer-events:auto;
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        justify-content:space-between;
+        gap:16px;
+      "
+    >
+
+</div>
+
+        </div>
+    </section>
+
+    <!-- Featured Posts Section -->
+    <section class="featured-posts">
+        <div class="container">
+            <h2>Featured Articles</h2>
+            <div class="posts-grid">
+                <article class="post-card">
+                    <div class="post-image">
+                        <img src="assets\images\Introduction to Neural Networks.png" alt="Introduction to Neural Networks" loading="lazy">
+                    </div>
+                    <div class="post-content">
+                        <span class="post-category">Tutorial</span>
+                        <h3><a href="introduction-neural-networks.html">Introduction to Neural Networks for Beginners</a></h3>
+                        <p class="post-excerpt">Learn the fundamentals of neural networks and how to build your first model from scratch using Python and TensorFlow.</p>
+                        <div class="post-meta">
+                            <span class="post-date">April 12, 2025</span>
+                            <span class="post-read-time">10 min read</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <div class="post-image">
+                        <img src="assets\images\Machine Learning in Healthcare.png" alt="Machine Learning in Healthcare" loading="lazy">
+                    </div>
+                    <div class="post-content">
+                        <span class="post-category">Case Study</span>
+                        <h3><a href="ml-healthcare-diagnostics.html">How Machine Learning is Transforming Healthcare Diagnostics</a></h3>
+                        <p class="post-excerpt">Explore real-world applications of ML in medical imaging and patient data analysis with measurable outcomes.</p>
+                        <div class="post-meta">
+                            <span class="post-date">March 28, 2025</span>
+                            <span class="post-read-time">15 min read</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <div class="post-image">
+                        <img src="assets\images\AI Tools Comparison.png" alt="AI Tools Comparison" loading="lazy">
+                    </div>
+                    <div class="post-content">
+                        <span class="post-category">Tools</span>
+                        <h3><a href="ai-top10-tools-developers.html">Top 10 AI Tools for Developers in 2025</a></h3>
+                        <p class="post-excerpt">Comprehensive comparison of the most useful AI development tools, libraries, and platforms available today.</p>
+                        <div class="post-meta">
+                            <span class="post-date">March 15, 2025</span>
+                            <span class="post-read-time">8 min read</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="section-cta">
+                <a href="blogs.html" class="btn btn-outline">View All Articles</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Stay Updated with AI & ML</h2>
+                <p>Subscribe to our newsletter and never miss new tutorials, case studies, and tool updates.</p>
+                <form class="newsletter-form" id="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+                <p class="newsletter-note">We respect your privacy. Unsubscribe at any time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <h2>Explore by Category</h2>
+            <div class="categories-grid">
+                <a href="blogs.html?category=tutorials" class="category-card">
+                    <div class="category-icon">
+                        <img 
+  src="assets/images/Tutorials.png" 
+  alt="Tutorials" 
+  width="0" 
+  height="0"
+  style="
+    display:inline-block;
+    width:100px; 
+    height:100px;
+    object-fit:cover;
+    border-radius:50%; 
+    background:linear-gradient(135deg,#007BFF,#6A0DAD); 
+    padding:6px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.25);
+    transition:all 0.35s ease;
+    cursor:pointer;
+  "
+  onmouseover="this.style.transform='scale(1.2) rotate(0deg)'; this.style.boxShadow='0 10px 24px rgba(0,0,0,0.35)'; this.style.filter='brightness(1.15)';"
+  onmouseout="this.style.transform='scale(1) rotate(0deg)'; this.style.boxShadow='0 6px 18px rgba(0,0,0,0.25)'; this.style.filter='brightness(1)';"
+/>
+
+                    </div>
+                    <h3>Tutorials</h3>
+                    <p>Step-by-step guides for all skill levels</p>
+                </a>
+                
+                <a href="blogs.html?category=case-studies" class="category-card">
+                    <div class="category-icon">
+                        <img 
+  src="assets\images\Case Studies.png" 
+  alt="Tutorials" 
+  width="0" 
+  height="0"
+  style="
+    display:inline-block;
+    width:100px; 
+    height:100px;
+    object-fit:cover;
+    border-radius:50%; 
+    background:linear-gradient(0deg,#007BFF,#6A0DAD); 
+    padding:6px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.25);
+    transition:all 0.35s ease;
+    cursor:pointer;
+  "
+  onmouseover="this.style.transform='scale(1.2) rotate(0deg)'; this.style.boxShadow='0 10px 24px rgba(0,0,0,0.35)'; this.style.filter='brightness(1.15)';"
+  onmouseout="this.style.transform='scale(1) rotate(0deg)'; this.style.boxShadow='0 6px 18px rgba(0,0,0,0.25)'; this.style.filter='brightness(1)';"
+/>
+
+                    </div>
+                    <h3>Case Studies</h3>
+                    <p>Real-world applications and results</p>
+                </a>
+                
+                <a href="tools.html" class="category-card">
+                    <div class="category-icon">
+                        <img 
+  src="assets\images\Tools & Resources.png" 
+  alt="Tutorials" 
+  width="0" 
+  height="0"
+  style="
+    display:inline-block;
+    width:100px; 
+    height:100px;
+    object-fit:cover;
+    border-radius:50%; 
+    background:linear-gradient(135deg,#007BFF,#6A0DAD); 
+    padding:6px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.25);
+    transition:all 0.35s ease;
+    cursor:pointer;
+  "
+  onmouseover="this.style.transform='scale(1.2) rotate(0deg)'; this.style.boxShadow='0 10px 24px rgba(0,0,0,0.35)'; this.style.filter='brightness(1.15)';"
+  onmouseout="this.style.transform='scale(1) rotate(0deg)'; this.style.boxShadow='0 6px 18px rgba(0,0,0,0.25)'; this.style.filter='brightness(1)';"
+/>
+                    </div>
+                    <h3>Tools & Resources</h3>
+                    <p>Software, libraries and datasets</p>
+                </a>
+                
+                <a href="blogs.html?category=news" class="category-card">
+                    <div class="category-icon">
+                        <img 
+  src="assets\images\AI ML News.png" 
+  alt="Tutorials" 
+  width="0" 
+  height="0"
+  style="
+    display:inline-block;
+    width:100px; 
+    height:100px;
+    object-fit:cover;
+    border-radius:50%; 
+    background:linear-gradient(135deg,#007BFF,#6A0DAD); 
+    padding:6px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.25);
+    transition:all 0.35s ease;
+    cursor:pointer;
+  "
+  onmouseover="this.style.transform='scale(1.2) rotate(0deg)'; this.style.boxShadow='0 10px 24px rgba(0,0,0,0.35)'; this.style.filter='brightness(1.15)';"
+  onmouseout="this.style.transform='scale(1) rotate(0deg)'; this.style.boxShadow='0 6px 18px rgba(0,0,0,0.25)'; this.style.filter='brightness(1)';"
+/>
+                    </div>
+                    <h3>AI News</h3>
+                    <p>Latest developments in AI and ML</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="assets\images\logo.webp" 
+     alt="Smart AI & ML Projects" 
+     style="
+        width: 65px; 
+        height: 65px; 
+        border-radius: 50%; 
+        object-fit: cover; 
+        border: 3px solid #007BFF; 
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
+        transition: transform 0.3s, box-shadow 0.3s;"
+     onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.4)';" 
+     onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.3)';">
+
+                    <p>Providing high-quality tutorials, case studies, and tools for AI and machine learning enthusiasts.</p>
+                    
+  <div style="display:flex; justify-content:center; gap:15px; margin-top:20px;">
+
+  <!-- Twitter -->
+  <a href="https://x.com/Vishamb45787267" 
+     aria-label="Twitter"
+     style="display:inline-block; width:40px; height:40px; padding:8px; border-radius:50%; background:linear-gradient(135deg,#1DA1F2,#0d47a1); box-shadow:0 4px 15px rgba(0,0,0,0.3); transition:0.3s;"
+     onmouseover="this.style.transform='scale(1.2) rotate(10deg)'; this.style.filter='brightness(1.2)'" 
+     onmouseout="this.style.transform='scale(1) rotate(0deg)'; this.style.filter='brightness(1)'">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24" fill="white">
+      <path d="M459.4 151.7c.3 4.1 .3 8.3 .3 12.5 0 127-96.7 273.7-273.7 273.7-54.4 0-104.9-15.8-147.5-43.1 7.6.9 15.3 1.3 23 1.3 45.3 0 87-15.5 120-41.6-42.4-.9-78.2-28.8-90.5-67.3 5.9.9 11.9 1.5 18.2 1.5 8.8 0 17.3-1.2 25.4-3.3-44.3-8.9-77.6-48-77.6-94.9v-1.2c13 7.2 27.8 11.5 43.6 12.1-25.8-17.2-42.8-46.6-42.8-79.8 0-17.5 4.7-33.9 13-48 47 57.6 117.3 95.5 196.5 99.5-1.6-7-2.5-14.3-2.5-21.8 0-52.6 42.7-95.3 95.3-95.3 27.5 0 52.3 11.6 69.7 30.3 21.8-4.3 42.2-12.3 60.5-23.4-7.2 22.5-22.5 41.4-42.5 53.4 19.3-2.3 37.7-7.5 54.9-15.1-12.8 19.1-29.1 35.9-47.8 49.3z"/>
+    </svg>
+  </a>
+
+  <!-- LinkedIn -->
+  <a href="https://www.linkedin.com/in/vishamber-b57369254/" 
+     aria-label="LinkedIn"
+     style="display:inline-block; width:40px; height:40px; padding:8px; border-radius:50%; background:linear-gradient(135deg,#0077B5,#004971); box-shadow:0 4px 15px rgba(0,0,0,0.3); transition:0.3s;"
+     onmouseover="this.style.transform='scale(1.2) rotate(10deg)'; this.style.filter='brightness(1.2)'" 
+     onmouseout="this.style.transform='scale(1) rotate(0deg)'; this.style.filter='brightness(1)'">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24" fill="white">
+      <path d="M100.28 448H7.4V148.9h92.88zm-46.44-340a53.65 53.65 0 1 1 53.64-53.65 53.64 53.64 0 0 1-53.64 53.64zm394.28 340h-92.68V302.4c0-34.7-12.44-58.4-43.52-58.4-23.72 0-37.88 15.94-44.08 31.35-2.28 5.56-2.84 13.33-2.84 21.15V448h-92.68s1.24-241.7 0-266.1h92.68v37.7c12.3-19 34.38-46 83.68-46 61.12 0 107.04 39.92 107.04 125.74V448z"/>
+    </svg>
+  </a>
+
+  <!-- Instagram -->
+  <a href="https://www.instagram.com/digital_trader_vishamber/" 
+     aria-label="Instagram"
+     style="display:inline-block; width:40px; height:40px; padding:8px; border-radius:50%; background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af); box-shadow:0 4px 15px rgba(0,0,0,0.3); transition:0.3s;"
+     onmouseover="this.style.transform='scale(1.2) rotate(10deg)'; this.style.filter='brightness(1.2)'" 
+     onmouseout="this.style.transform='scale(1) rotate(0deg)'; this.style.filter='brightness(1)'">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+      <linearGradient id="instaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="50%" stop-color="#f58529"/>
+        <stop offset="100%" stop-color="#dd2a7b"/>
+        <stop offset="50%" stop-color="#8134af"/>
+      </linearGradient>
+      <rect x="32" y="32" width="448" height="448" rx="120" ry="120" fill="url(#instaGradient)"/>
+      <circle cx="256" cy="256" r="112" fill="white"/>
+      <circle cx="256" cy="256" r="80" fill="url(#instaGradient)"/>
+      <circle cx="396" cy="116" r="20" fill="white"/>
+    </svg>
+  </a>
+
+</div>
+
+
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="blogs.html">Blog</a></li>
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="tools.html">Tools</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="post.html">Build Your First Neural Network</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="contact.html">Get in Touch</a></li>
+                        <li><a href="mailto:smartaimlprojects.in@gmail.com">smartaimlprojects.in@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Smart AI & ML Projects. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+<script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const nav = document.querySelector('.nav');
+            
+            if (mobileMenuToggle && nav) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    nav.classList.toggle('active');
+                    
+                    // Prevent body scrolling when menu is open
+                    if (nav.classList.contains('active')) {
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+                
+                // Close menu when clicking on a link
+                const navLinks = document.querySelectorAll('.nav a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenuToggle.classList.remove('active');
+                        nav.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
